@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import Products
 from django.views.generic.detail import DetailView
 
-
+# new comment
 def index(request):
     products = Products.objects.order_by("-percent_discount")
 
