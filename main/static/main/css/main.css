@@ -1,0 +1,123 @@
+body{
+    background: #e6e6e6;
+}
+
+.content {
+    float: left;
+    color: black;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    text-align: left;
+    width: 90%
+}
+
+.nav me-auto {
+    background: #e6e6e6;
+}
+
+products {
+    margin-top: 50px;
+    width: 250px;
+    height: 320px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2vw;
+}
+
+products a{
+    text-decoration: none;
+    color: black;
+}
+
+products a:hover{
+    color: black;
+}
+
+products p { color: black; font-size: 20px; }
+
+
+
+.product_description {
+    margin: -1250px 0 0 -125px;
+    max-width: 500px;
+    font-size: 20px;
+    left: 600px;
+    margin-left: 550px;
+    margin-top: -470px;
+    text-align: left;
+}
+
+.product_price {
+    font-size: 40px;
+    left: 600px;
+    margin-left: 1100px;
+    margin-top: -130px;
+    text-align: left;
+}
+
+.product_box{
+    width: 310px;
+    height: 450px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background: white;
+    font-size: 5vw;
+    padding: .5em;
+    text-align: center;
+    align-items: center;
+}
+.product_box h3{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 700;
+}
+
+.image_box_prod {
+    display: flex;
+    width: 210px;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.product_image{
+    max-width: 210px;
+    max-height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.price_with_discount_on_main{
+    margin-left: 0px;
+    color: White;
+    background-color: rgb(16, 196, 76);
+
+
+    border-radius: 10px;
+    font-family: Arial Black;
+    font-size:15pt;
+
+}
+
+.price_without_discount_on_main{
+    margin-left: 0px;
+    color: White;
+    background-color: rgb(76, 151, 255);
+    border-radius: 10px;
+    font-family: Arial Black;
+    font-size:15pt;
+}
+
+.price_old{
+    text-align: left;
+    font-family: Arial Black;
+    color: Grey;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: red;
+    font-size: 12pt;
+}

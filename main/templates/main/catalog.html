@@ -1,0 +1,19 @@
+{% extends 'main/header.html' %}
+
+{% block title %}
+КАТЕГОРИЯ
+{% endblock %}
+
+{% block content %}
+<h1>ВЫБЕРИТЕ КАТЕГОРИЮ</h1>
+{% csrf_token %}
+<div>
+    {% for i in products %}
+        <a href="{% url 'category_page' i %}">
+            <div style="height: 40px; width: 800px; border: 2px solid black; border-radius: 10px; background: white;">
+                <h3>{{ i }}</h3>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

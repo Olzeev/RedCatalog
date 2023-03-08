@@ -1,0 +1,23 @@
+{% extends 'main/header.html' %}
+
+{% block title %}
+{{ product.product_name }}
+{% endblock %}
+
+{% block content %}
+<h1 style="font-size: 50px; font-family: Gill Sans, sans-serif; font-weight: bolder;">{{ product.product_name }}</h1>
+<img src={{ product.img_link }} style="width:500px; border-radius: 40px; margin-top:20px;">
+<div class="product_description">
+    <p>Описание:    {{ product.description }}</p>
+    <p>Бренд:   {{ product.brand }}</p>
+    <p>Категория: {{ product.category }}</p>
+</div>
+<div class="product_price">
+    {% if product.discount %}
+        <p style="max-width: 150px; border-radius: 10px; background-color: rgb(16, 196, 76);">{{ product.price_with_discount }}Р</p>
+        <p style="text-decoration: line-through; text-decoration-color: red; front-size: 10px;">{{ product.price }}руб</p>
+    {% else %}
+        <p style="color: rgb(255, 255, 255); background-color: rgb(16, 196, 76); max-width: 150px; border-radius: 10px;">{{ product.price }}руб</p>
+    {% endif %}
+</div>
+{% endblock %}
