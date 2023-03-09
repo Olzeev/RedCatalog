@@ -45,7 +45,27 @@ products p { color: black; font-size: 20px; }
     border-radius: 15px;
     text-align: center;
     align-items: center;
+    transition: 0.2s;
 }
+
+.product_box:hover{
+    width: 290px;
+    height: 430px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+
+}
+
+.product_box:active{
+    width: 270px;
+    height: 410px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+
+}
+
 .product_box h3{
     white-space: nowrap;
     overflow: hidden;
@@ -149,7 +169,7 @@ products p { color: black; font-size: 20px; }
 }
 
 .category_button{
-    display: block;
+    display: inline-block;
     margin-top: 20px;
     width: 500px;
     height: 50px;
@@ -157,6 +177,11 @@ products p { color: black; font-size: 20px; }
     border-radius: 10px;
     color: black;
     text-decoration: none;
+    transition: 0.1s;
+}
+.category_button:hover{
+    border: 3px solid rgb(255, 57, 43);
+    color: rgb(255, 57, 43);
 }
 
 .content_login_page{
