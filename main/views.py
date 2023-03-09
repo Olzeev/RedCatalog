@@ -10,7 +10,9 @@ from django.views.generic.detail import DetailView
 # new comment 5
 # new comment 6
 # dopling comments from main
+# new comment from feature
 # new comment 7
+
 
 def index(request):
     products = Products.objects.order_by("-percent_discount")
