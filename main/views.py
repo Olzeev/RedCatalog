@@ -5,7 +5,7 @@ from django.views.generic.detail import DetailView
 
 # new comment
 # new comment 2
-#new comment 3
+# new comment 3
 def index(request):
     products = Products.objects.order_by("-percent_discount")
 
