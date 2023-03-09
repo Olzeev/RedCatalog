@@ -9,7 +9,7 @@ from django.views.generic.detail import DetailView
 # new comment 4
 # new comment 5
 # new comment 6
-
+# dopling comments from main
 # new comment 7
 
 def index(request):
