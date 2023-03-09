@@ -11,7 +11,7 @@
     {% for i in products %}
         <a style="text-decoration: none;" href="{% url 'category_page' i %}">
             <div class="category_button">
-                <p style="margin-top: 20px; margin-left: 20px;">{{ i }}</p>
+                <p style="display: block; position: absolute; margin-top: 10px; margin-left: 20px;">{{ i }}</p>
             </div>
         </a>
     {% endfor %}

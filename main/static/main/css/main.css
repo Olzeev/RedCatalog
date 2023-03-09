@@ -65,7 +65,7 @@ products p { color: black; font-size: 20px; }
 .price_with_discount_on_main{
     margin-left: 0px;
     color: White;
-    background-color: rgb(16, 196, 76);
+    background-color: rgb(255, 57, 43);
 
 
     border-radius: 10px;
@@ -149,8 +149,10 @@ products p { color: black; font-size: 20px; }
 }
 
 .category_button{
-    margin-top: 10px;
-    height: 60px;
+    display: block;
+    margin-top: 20px;
+    width: 500px;
+    height: 50px;
     box-shadow: 10px 10px 20px grey;
     border-radius: 10px;
     color: black;
@@ -214,7 +216,7 @@ products p { color: black; font-size: 20px; }
     position: absolute;
     width: 60%;
     height: 50px;
-    background-color: rgb(46, 95, 255);
+    background-color: rgb(255, 57, 43);
     left: 50%;
     margin-left: -30%;
     border-radius: 10px;
@@ -224,7 +226,7 @@ products p { color: black; font-size: 20px; }
     position: absolute;
     width: 60%;
     height: 50px;
-    background-color: rgb(46, 95, 255);
+    background-color: rgb(255, 57, 43);
     left: 50%;
     margin-left: -30%;
     border-radius: 10px;
