@@ -35,3 +35,7 @@ def stock(request):
 
 def favourites(request):
     return render(request, 'main/favourites.html')
+
+
+def login(request):
+    return render(request, 'main/login_page.html')

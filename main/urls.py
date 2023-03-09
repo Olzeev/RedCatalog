@@ -8,6 +8,6 @@ urlpatterns = [
     path('favourites', views.favourites, name='fav'),
     path('product/<int:pk>', views.Product_page.as_view(), name='product_page'),
     path('category/<str:key>', views.category_page, name='category_page'),
-    #path('login', views.login, name='login'), #вход
+    path('login', views.login, name='login'), #вход
     #path('sign_in', views.sign_in, name='sign')
 ]

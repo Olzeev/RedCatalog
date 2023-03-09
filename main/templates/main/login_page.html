@@ -31,15 +31,25 @@
         <svg class="bi me-2" width="0" height="32"><use xlink:href="#bootstrap"></use></svg>
         <img src="{% static 'main/png/Logo.png' %}" style="width:120px; height: 70px;" alt="Лого" class="logo">
       </a>
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-      </form>
     </div>
   </header>
-<div class="content">
-    {% block content %}
-
-    {% endblock %}
+<div class="content_login_page">
+    <div class="login_box">
+        <h1>Вход</h1>
+        <p><input placeholder="Логин" maxlength="30" size="30" class="login_input"></p>
+        <p><input placeholder="Пароль" maxlength="30" size="30" class="password_input"></p>
+        <a href="{% url 'shop' %}">
+            <div class="login_button">
+                <p style="margin-top: 10px;">Войти</p>
+            </div>
+        </a>
+        <div style="display: flex; flex-direction: row; margin-top: 90px; margin-left: 30px;">
+            <p>Еще нет аккаунта?</p>
+            <a href="{% url 'shop' %}" style="margin-left: 10px; text-decoration: none;">
+                <p> Зарегистрируйтесь</p>
+            </a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
