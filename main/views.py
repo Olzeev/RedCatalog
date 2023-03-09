@@ -9,8 +9,8 @@ from django.views.generic.detail import DetailView
 # new comment 4
 # new comment 5
 # new comment 6
-
 # new comment 7
+# new comment from feature
 
 def index(request):
     products = Products.objects.order_by("-percent_discount")
