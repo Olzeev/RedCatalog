@@ -7,6 +7,7 @@ from django.views.generic.detail import DetailView
 # new comment 2
 # new comment 3
 # new comment 4
+# new comment 5
 
 
 def index(request):
