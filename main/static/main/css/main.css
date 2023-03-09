@@ -1,5 +1,4 @@
 body{
-    background: #e6e6e6;
 }
 
 .content {
@@ -36,34 +35,14 @@ products a:hover{
 
 products p { color: black; font-size: 20px; }
 
-
-
-.product_description {
-    margin: -1250px 0 0 -125px;
-    max-width: 500px;
-    font-size: 20px;
-    left: 600px;
-    margin-left: 550px;
-    margin-top: -470px;
-    text-align: left;
-}
-
-.product_price {
-    font-size: 40px;
-    left: 600px;
-    margin-left: 1100px;
-    margin-top: -130px;
-    text-align: left;
-}
-
 .product_box{
     width: 310px;
     height: 450px;
-    border: 2px solid black;
-    border-radius: 20px;
+    box-shadow: 20px 20px 40px grey;
     background: white;
     font-size: 5vw;
     padding: .5em;
+    border-radius: 15px;
     text-align: center;
     align-items: center;
 }
@@ -81,14 +60,6 @@ products p { color: black; font-size: 20px; }
     align-items: center;
     justify-content: center;
     margin: auto;
-}
-
-.product_image{
-    max-width: 210px;
-    max-height: 250px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
 }
 
 .price_with_discount_on_main{
@@ -120,4 +91,56 @@ products p { color: black; font-size: 20px; }
     text-decoration-thickness: 2px;
     text-decoration-color: red;
     font-size: 12pt;
+}
+
+.product_image{
+    max-width: 210px;
+    max-height: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.product_description {
+    margin-left: 40px;
+    max-width: 500px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.product_price {
+    width: 300px;
+    height: 150px;
+    box-shadow: 10px 10px 20px grey;
+    font-size: 40px;
+    margin-left: 60px;
+    margin-top: 30px;
+    text-align: left;
+    font-family: Arial Black;
+    border-radius: 20px;
+
+
+}
+.product_page{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-padding: 2vw;
+}
+
+.product_price_with_discount_in_product_page{
+    margin-left: 30px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.product_price_without_discount_in_product_page{
+    margin-top: -20px;
+    margin-left: 30px;
+    color: Grey;
+    font-size: 16pt;
+    text-decoration: line-through;
+    text-decoration-color: red;
+    front-size: 10px;
+
 }
