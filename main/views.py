@@ -39,3 +39,7 @@ def favourites(request):
 
 def login(request):
     return render(request, 'main/login_page.html')
+
+
+def registration(request):
+    return render(request, 'main/registration_page.html')
