@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Products
+from .models import Products, Users
 from django.views.generic.detail import DetailView
 from .forms import UsersForm
 
@@ -61,6 +61,18 @@ def favourites(request):
 
 
 def login(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        login = request.POST.get("login")
+        users = Users.objects.all()
+        flag = False
+        for i in users:
+            if i.email == email and i.login == login:
+                flag = True
+                break
+        if flag:
+            return redirect("shop")
+
     return render(request, 'main/login_page.html')
 
 
