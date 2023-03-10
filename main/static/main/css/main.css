@@ -38,7 +38,7 @@ products p { color: black; font-size: 20px; }
 .product_box{
     width: 310px;
     height: 450px;
-    box-shadow: 20px 20px 40px grey;
+    box-shadow: 10px 10px 30px grey;
     background: white;
     font-size: 5vw;
     padding: .5em;
@@ -66,7 +66,7 @@ products p { color: black; font-size: 20px; }
 
 }
 
-.product_box h3{
+.product_box p{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

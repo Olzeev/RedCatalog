@@ -5,8 +5,26 @@ from django.views.generic.detail import DetailView
 
 
 def index(request):
-    products = Products.objects.order_by("-percent_discount")
+    products = Products.objects.filter().order_by("-percent_discount")[:5]
+    for i in products:
+        cnt = 1
+        new_price = ''
+        for c in str(i.price)[::-1]:
+            new_price += c
+            if cnt % 3 == 0:
+                new_price += ' '
+            cnt += 1
+        i.price = new_price[::-1]
+        cnt = 1
+        new_price = ''
 
+        for c in str(i.price_with_discount)[::-1]:
+            new_price += c
+            if cnt % 3 == 0:
+                new_price += ' '
+            cnt += 1
+
+        i.price_with_discount = new_price[::-1]
     return render(request, 'main/index.html', {"products": products})
 
 
