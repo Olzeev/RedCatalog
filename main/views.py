@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import Products
 from django.views.generic.detail import DetailView
 
+
 def convert_prices(products):
     for i in products:
         cnt = 1
