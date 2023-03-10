@@ -12,3 +12,4 @@ urlpatterns = [
     path('registration', views.registration, name='registration')
 ]
 #Ильгар нефор
+#Макс нефор
