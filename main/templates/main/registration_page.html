@@ -33,23 +33,25 @@
       </a>
     </div>
   </header>
+
+
 <div class="content_login_page">
     <div class="registration_box">
         <h1 style="margin-top: 20px">Регистрация</h1>
-        <p><input placeholder="Логин" maxlength="30" size="30" class="login_input"></p>
-        <p><input placeholder="Пароль" maxlength="30" size="30" class="password_input"></p>
-        <p><input placeholder="Эл. почта" maxlength="30" size="30" class="mail_input"></p>
-        <a href="{% url 'shop' %}">
-            <div class="login_button">
-                <p style="margin-top: 10px;">Зарегистрироваться</p>
-            </div>
-        </a>
-        <div style="display: flex; flex-direction: row; margin-top: 90px; margin-left: 30px;">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.email }}<br><br>
+            {{ form.login }}
+            {{ error }}
+            <button type="submit" style="margin-top: 100px;" class="registration_button">Зарегистрироваться</button>
+        </form>
+        <div style="display: flex; flex-direction: row; margin-top: 150px; margin-left: 30px;">
             <p>Уже есть аккаунт?</p>
             <a href="{% url 'login' %}" style="margin-left: 10px; text-decoration: none;">
                 <p> Войдите</p>
             </a>
         </div>
+
     </div>
 </div>
 </body>

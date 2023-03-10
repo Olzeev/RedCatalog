@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Products
 from django.views.generic.detail import DetailView
+from .forms import UsersForm
 
 
 def convert_prices(products):
@@ -64,4 +65,14 @@ def login(request):
 
 
 def registration(request):
-    return render(request, 'main/registration_page.html')
+    error = ""
+    if request.method == "POST":
+        form = UsersForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("shop")
+        else:
+            error = 'Данные введены некоректно'
+
+    form = UsersForm()
+    return render(request, 'main/registration_page.html', {"form": form, "error": error})

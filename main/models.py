@@ -23,14 +23,29 @@ class Products(models.Model):
 class Users(models.Model):
     email = models.CharField("Электронная почта", max_length=50)
     login = models.CharField("Логин", max_length=35)
-    user_name = models.CharField("Имя", max_length=25)
-    user_surname = models.CharField("Фамилия", max_length=25)
-    age = models.IntegerField("Возраст")
-    sity = models.CharField("Город", max_length=40)
+    user_name = models.CharField("Имя", max_length=25, default='')
+    user_surname = models.CharField("Фамилия", max_length=25, default='')
+    age = models.IntegerField("Возраст", default=18)
+    sity = models.CharField("Город", max_length=40, default='')
     money = models.IntegerField("Баланс", default=100000)
     flag = models.BooleanField("Продавец или нет", default=False)
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
 
 
 class Favourites(models.Model):
     id_user = models.IntegerField("ID пользователя")
     id_product = models.IntegerField("ID товара")
+
+    def __str__(self):
+        return f"{self.id_user} -> {self.id_product}"
+
+    class Meta:
+        verbose_name = "Избранное"
+        verbose_name_plural = "Избранное"
+
