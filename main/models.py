@@ -18,3 +18,19 @@ class Products(models.Model):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+
+
+class Users(models.Model):
+    email = models.CharField("Электронная почта", max_length=50)
+    login = models.CharField("Логин", max_length=35)
+    user_name = models.CharField("Имя", max_length=25)
+    user_surname = models.CharField("Фамилия", max_length=25)
+    age = models.IntegerField("Возраст")
+    sity = models.CharField("Город", max_length=40)
+    money = models.IntegerField("Баланс", default=100000)
+    flag = models.BooleanField("Продавец или нет", default=False)
+
+
+class Favourites(models.Model):
+    id_user = models.IntegerField("ID пользователя")
+    id_product = models.IntegerField("ID товара")
