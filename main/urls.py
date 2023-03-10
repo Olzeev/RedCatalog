@@ -11,3 +11,4 @@ urlpatterns = [
     path('login', views.login, name='login'), #вход
     path('registration', views.registration, name='registration')
 ]
+#Ильгар нефор

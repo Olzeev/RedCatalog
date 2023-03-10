@@ -3,9 +3,7 @@ from django.shortcuts import render
 from .models import Products
 from django.views.generic.detail import DetailView
 
-
-def index(request):
-    products = Products.objects.filter().order_by("-percent_discount")[:5]
+def convert_prices(products):
     for i in products:
         cnt = 1
         new_price = ''
@@ -25,7 +23,12 @@ def index(request):
             cnt += 1
 
         i.price_with_discount = new_price[::-1]
-    return render(request, 'main/index.html', {"products": products})
+
+
+def index(request):
+    products = Products.objects.order_by("-percent_discount")
+    convert_prices(products)
+    return render(request, 'main/index.html', {"top_products": products[:5], "products": products[5:]})
 
 
 class Product_page(DetailView):
