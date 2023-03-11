@@ -55,7 +55,18 @@ products p { color: black; font-size: 20px; }
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
-
+}
+.image_box_prod {
+    display: flex;
+    width: 210px;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    transition: 0.2s;
+}
+.product_box:hover .image_box_prod{
+    width: 180px;
 }
 
 .product_box:active{
@@ -74,14 +85,7 @@ products p { color: black; font-size: 20px; }
     font-weight: 700;
 }
 
-.image_box_prod {
-    display: flex;
-    width: 210px;
-    height: 250px;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-}
+
 
 .price_with_discount_on_main{
     margin-left: 0px;
@@ -180,6 +184,19 @@ products p { color: black; font-size: 20px; }
     text-decoration: none;
     transition: 0.1s;
 }
+
+.category_button img{
+    margin-left: 470px;
+    margin-top: 15px;
+    filter: alpha(Opacity=0); /* Полупрозрачность для IE */
+    opacity: 0; /* Полупрозрачность для других браузеров */
+    transition: 0.2s;
+}
+.category_button:hover img{
+    filter: alpha(Opacity=100); /* Полупрозрачность для IE */
+    opacity: 1; /* Полупрозрачность для других браузеров */
+}
+
 .category_button:hover{
     border: 3px solid rgb(255, 57, 43);
     color: rgb(255, 57, 43);
