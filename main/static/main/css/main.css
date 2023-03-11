@@ -274,6 +274,7 @@ products p { color: black; font-size: 20px; }
     margin-left: -30%;
     border-radius: 10px;
     color: White;
+    border: 0px;
 }
 
 .mail_input{

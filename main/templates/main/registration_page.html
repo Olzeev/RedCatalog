@@ -41,7 +41,7 @@
         <form method="post">
             {% csrf_token %}
             {{ form.email }}<br><br>
-            {{ form.login }}
+            {{ form.password }}
             {{ error }}
             <button type="submit" style="margin-top: 100px;" class="registration_button">Зарегистрироваться</button>
         </form>

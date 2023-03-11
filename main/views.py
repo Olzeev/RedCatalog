@@ -64,11 +64,11 @@ def login(request):
     error = ''
     if request.method == "POST":
         email = request.POST.get("email")
-        login = request.POST.get("login")
+        password = request.POST.get("password")
         users = Users.objects.all()
         flag = False
         for i in users:
-            if i.email == email and i.login == login:
+            if i.email == email and i.password == password:
                 flag = True
                 break
         if flag:
@@ -83,7 +83,13 @@ def registration(request):
     error = ""
     if request.method == "POST":
         form = UsersForm(request.POST)
-        if form.is_valid():
+        users = Users.objects.all()
+        flag = True
+        for i in users:
+            if i.email == form["email"].value():
+                flag = False
+                break
+        if form.is_valid() and flag:
             form.save()
             return redirect("shop")
         else:

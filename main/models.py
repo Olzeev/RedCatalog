@@ -22,7 +22,7 @@ class Products(models.Model):
 
 class Users(models.Model):
     email = models.CharField("Электронная почта", max_length=50)
-    login = models.CharField("Логин", max_length=35)
+    password = models.CharField("Пароль", max_length=35)
     user_name = models.CharField("Имя", max_length=25, default='')
     user_surname = models.CharField("Фамилия", max_length=25, default='')
     age = models.IntegerField("Возраст", default=18)
@@ -49,3 +49,5 @@ class Favourites(models.Model):
         verbose_name = "Избранное"
         verbose_name_plural = "Избранное"
 
+
+# class Pictur(models.Model)

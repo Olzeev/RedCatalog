@@ -5,7 +5,7 @@ from django.forms import ModelForm, TextInput
 class UsersForm(ModelForm):
     class Meta:
         model = Users
-        fields = ["email", "login"]
+        fields = ["email", "password"]
 
         widgets = {
             "email": TextInput(attrs={
@@ -15,7 +15,7 @@ class UsersForm(ModelForm):
                 "maxlength": "30",
                 "size": "30"
             }),
-            "login": TextInput(attrs={
+            "password": TextInput(attrs={
                 "class": "password_input",
                 "placeholder": "Пароль",
                 "type": "password",
