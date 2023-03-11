@@ -61,6 +61,7 @@ def favourites(request):
 
 
 def login(request):
+    error = ''
     if request.method == "POST":
         email = request.POST.get("email")
         login = request.POST.get("login")
@@ -72,8 +73,10 @@ def login(request):
                 break
         if flag:
             return redirect("shop")
+        else:
+            error = 'Данные введены некоректно'
 
-    return render(request, 'main/login_page.html')
+    return render(request, 'main/login_page.html', {"error": error})
 
 
 def registration(request):

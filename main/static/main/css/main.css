@@ -212,7 +212,7 @@ products p { color: black; font-size: 20px; }
 .login_box{
     position: absolute;
     width: 400px;
-    height: 350px;
+    height: 400px;
     font-family: Trebuchet MS;
     display: block;
     margin-top: 50px;
