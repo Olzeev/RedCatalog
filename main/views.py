@@ -62,6 +62,7 @@ def favourites(request):
 
 def login(request):
     error = ''
+    error_code = -1       # -1: нет ошибок, 0: нет такого пользователя, 1: неверный пароль
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")
@@ -71,16 +72,24 @@ def login(request):
             if i.email == email and i.password == password:
                 flag = True
                 break
+            elif i.email == email:
+                flag = False
+                error_code = 1
+                error = 'Неверный пароль'
+                break
         if flag:
             return redirect("shop")
         else:
-            error = 'Данные введены некоректно'
+            if error_code == -1:
+                error = 'Пользователь с таким логином не найден'
+                error_code = 0
 
-    return render(request, 'main/login_page.html', {"error": error})
+    return render(request, 'main/login_page.html', {"error": error, "error_code": error_code})
 
 
 def registration(request):
     error = ""
+    error_code = -1     # -1: ошибок нет, 0: почта уже зарегистрирована
     if request.method == "POST":
         form = UsersForm(request.POST)
         users = Users.objects.all()
@@ -88,12 +97,12 @@ def registration(request):
         for i in users:
             if i.email == form["email"].value():
                 flag = False
+                error = "Пользователь с такой электронной почтой уже зарегистрирован"
+                error_code = 0
                 break
         if form.is_valid() and flag:
             form.save()
             return redirect("shop")
-        else:
-            error = 'Данные введены некоректно'
 
     form = UsersForm()
-    return render(request, 'main/registration_page.html', {"form": form, "error": error})
+    return render(request, 'main/registration_page.html', {"form": form, "error": error, "error_code": error_code})

@@ -39,10 +39,23 @@
         <h1>Вход</h1>
         <form method="post">
             {% csrf_token %}
-            <p style="color: red;">{{ error }}</p>
-            <input name="email" type="email" placeholder="Логин" maxlength="30" size="30" class="login_input"><br><br>
-            <input name="password" type="password" placeholder="Пароль" maxlength="30" size="30" class="password_input">
-            <button type="submit" style="margin-top: 75px;" class="registration_button">Войти</button>
+
+            <div>
+                <input name="email" type="email" placeholder="Логин" maxlength="30" size="30" class="login_input">
+            </div>
+            {% if error_code == 0 %}
+                <p style="color: red;">{{error}}</p>
+            {% endif %}
+
+            <div style="margin-top: 20px;">
+                <input name="password" type="password" placeholder="Пароль" maxlength="30" size="30" class="password_input">
+            </div>
+            {% if error_code == 1 %}
+                <p style="color: red;">{{error}}</p>
+            {% endif %}
+            <div style="margin-top: 20px;">
+                <button type="submit" style="" class="registration_button">Войти</button>
+            </div>
         </form>
         <div style="display: flex; flex-direction: row; margin-top: 90px; margin-left: 30px;">
             <p>Еще нет аккаунта?</p>

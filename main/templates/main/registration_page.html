@@ -40,12 +40,21 @@
         <h1 style="margin-top: 20px">Регистрация</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.email }}<br><br>
-            {{ form.password }}
-            {{ error }}
-            <button type="submit" style="margin-top: 100px;" class="registration_button">Зарегистрироваться</button>
+            <div>
+                {{ form.email }}
+            </div>
+            {% if error_code == 0 %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            <div style="margin-top: 20px;">
+                {{ form.password }}
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="submit" class="registration_button">Зарегистрироваться</button>
+            </div>
         </form>
-        <div style="display: flex; flex-direction: row; margin-top: 150px; margin-left: 30px;">
+        <div style="display: flex; flex-direction: row; margin-top: 100px; margin-left: 30px;">
             <p>Уже есть аккаунт?</p>
             <a href="{% url 'login' %}" style="margin-left: 10px; text-decoration: none;">
                 <p> Войдите</p>
