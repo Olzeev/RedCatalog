@@ -10,8 +10,14 @@ urlpatterns = [
     path('category/<str:key>', views.category_page, name='category_page'),
     path('login', views.login, name='login'), #вход
     path('registration', views.registration, name='registration'),
+    path('profile/general_data', views.profile_general_data, name='profile_general_data'),
+    path('profile/sign_out', views.sign_out, name='sign_out'),
+    path('profile/edit_data', views.profile_edit_data, name='profile_edit_data'),
+    path('profile/purchase_history', views.profile_purchase_history, name='profile_purchase_history'),
+    path('profile/sell_history', views.profile_sell_history, name='profile_sell_history'),
+    path('profile/my_products', views.profile_my_products, name='profile_my_products'),
     path('profile', views.profile, name='profile'),
-    path('sign_out', views.sign_out, name='sign_out'),
+
 
 ]
 

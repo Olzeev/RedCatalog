@@ -10,11 +10,23 @@
     <h1 style="margin-top: 20px;">Профиль</h1>
     <div style="display: grid; grid-template-columns: 1fr 4fr; grid-gap: 2vw; ">
         <div>
-            <a href="{% url 'profile_general_data' %}">
+            <a href="{% url 'profile_general_data' %}" class="profile_list_button">
                 <p>Общее</p>
             </a>
-            <a href="{% url 'profile_edit_data' %}">
-                <p>редактирование данных</p>
+            <a href="{% url 'profile_edit_data' %}" class="profile_list_button">
+                <p>Редактирование данных</p>
+            </a>
+            <a href="{% url 'profile_purchase_history' %}" class="profile_list_button">
+                <p>История покупок</p>
+            </a>
+            <a href="{% url 'profile_sell_history' %}" class="profile_list_button">
+                <p>История продаж</p>
+            </a>
+            <a href="{% url 'profile_my_products' %}" class="profile_list_button">
+                <p>Мои товары</p>
+            </a>
+            <a href="{% url 'sign_out' %}" class="profile_list_button_quit">
+                <p>Выйти</p>
             </a>
         </div>
 

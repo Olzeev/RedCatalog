@@ -174,6 +174,18 @@ def sign_out(request):
 def profile_general_data(request):
     return render(request, 'main/profile/profile_general_data.html')
 
+
 def profile_edit_data(request):
     return render(request, 'main/profile/profile_edit_data.html')
 
+
+def profile_purchase_history(request):
+    return render(request, 'main/profile/profile_purchase_history.html')
+
+
+def profile_sell_history(request):
+    return render(request, 'main/profile/profile_sell_history.html')
+
+
+def profile_my_products(request):
+    return render(request, 'main/profile/profile_my_products.html')
