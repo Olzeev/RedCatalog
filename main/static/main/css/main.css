@@ -283,3 +283,25 @@ products p { color: black; font-size: 20px; }
     border-radius: 10px;
     font-size: 15pt;
 }
+
+.header_user{
+    width: 150px;
+    height: 35px;
+    font-size: 16px;
+    box-shadow: 5px 5px 20px grey;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.header_user:hover{ color: black }
+
+.header_user p{
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+    margin-top: 5px;
+
+}

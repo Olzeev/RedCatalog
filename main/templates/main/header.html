@@ -19,10 +19,17 @@
         <li class="nav-item"><a href="{% url 'aktsii' %}" class="nav-link link-dark px-2">Акции</a></li>
         <li class="nav-item"><a href="{% url 'fav' %}" class="nav-link link-dark px-2">Избранное</a></li>
       </ul>
-      <ul class="nav">
-        <li class="nav-item"><a href="{% url 'login' %}" class="nav-link link-dark px-2">Вход</a></li>
-        <li class="nav-item"><a href="{% url 'registration' %}" class="nav-link link-dark px-2">Регистрация</a></li>
-      </ul>
+      {% if is_registered %}
+        <a href="{% url 'profile' %}" class="header_user" >
+            <p>{{ user_header }}</p>
+        </a>
+
+      {% else %}
+        <ul class="nav">
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link link-dark px-2">Вход</a></li>
+            <li class="nav-item"><a href="{% url 'registration' %}" class="nav-link link-dark px-2">Регистрация</a></li>
+        </ul>
+      {% endif %}
     </div>
   </nav>
 <header class="py-3 mb-4 border-bottom">
