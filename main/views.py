@@ -64,6 +64,14 @@ class Product_page(DetailView):
     template_name = 'main/product_page.html'
     context_object_name = 'product'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(Product_page,
+                        self).get_context_data(*args, **kwargs)
+        # add extra field
+        context["user_header"] = str(user)
+        context["is_registered"] = user.is_registered
+        return context
+
 
 def category_page(request, key):
     products = Products.objects.order_by("-percent_discount")
