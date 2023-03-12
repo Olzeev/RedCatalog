@@ -12,6 +12,7 @@ class User:
         self.name = name
         self.sname = sname
 
+
     def __str__(self):
         if self.is_registered:
             if self.name is not None:
@@ -168,3 +169,11 @@ def sign_out(request):
     user.is_registered = False
     user.name, user.sname, user.mail = None, None, None
     return redirect('shop')
+
+
+def profile_general_data(request):
+    return render(request, 'main/profile/profile_general_data.html')
+
+def profile_edit_data(request):
+    return render(request, 'main/profile/profile_edit_data.html')
+
