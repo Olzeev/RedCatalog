@@ -161,8 +161,8 @@ def registration(request):
 
 
 def profile(request):
-    return render(request, 'main/profile_page.html', {"user_header": str(user),
-                                                      "is_registered": user.is_registered})
+    return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
+                                                                      "is_registered": user.is_registered})
 
 
 def sign_out(request):
@@ -172,20 +172,25 @@ def sign_out(request):
 
 
 def profile_general_data(request):
-    return render(request, 'main/profile/profile_general_data.html')
+    return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
+                                                                      "is_registered": user.is_registered})
 
 
 def profile_edit_data(request):
-    return render(request, 'main/profile/profile_edit_data.html')
+    return render(request, 'main/profile/profile_edit_data.html', {"user_header": str(user),
+                                                                      "is_registered": user.is_registered})
 
 
 def profile_purchase_history(request):
-    return render(request, 'main/profile/profile_purchase_history.html')
+    return render(request, 'main/profile/profile_purchase_history.html', {"user_header": str(user),
+                                                                      "is_registered": user.is_registered})
 
 
 def profile_sell_history(request):
-    return render(request, 'main/profile/profile_sell_history.html')
+    return render(request, 'main/profile/profile_sell_history.html', {"user_header": str(user),
+                                                                      "is_registered": user.is_registered})
 
 
 def profile_my_products(request):
-    return render(request, 'main/profile/profile_my_products.html')
+    return render(request, 'main/profile/profile_my_products.html', {"user_header": str(user),
+                                                                      "is_registered": user.is_registered})
