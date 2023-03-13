@@ -11,6 +11,7 @@ class Products(models.Model):
     discount = models.BooleanField("Есть ли скидка на товар", default=False)
     price_with_discount = models.IntegerField("Цена со скидкой")
     percent_discount = models.IntegerField("Процент скидки", default=0)
+    count = models.IntegerField("Количество товара (в шк)", default=1)
 
     def __str__(self):
         return f"{self.product_name} ({self.brand}, {self.price} руб)"

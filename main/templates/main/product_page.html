@@ -13,7 +13,8 @@
     <div class="product_description">
         <p>Описание:    {{ product.description }}</p>
         <p>Бренд:   {{ product.brand }}</p>
-        <p>Категория: {{ product.category }}</p>
+        <p>Категория: {{ product.category }}</p><br>
+        <b>Осталось: {{ product.count }}</b>
     </div>
     <div class="product_price">
         {% if product.discount %}
