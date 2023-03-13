@@ -134,7 +134,7 @@ products p { color: black; font-size: 20px; }
 
 .product_price {
     width: 300px;
-    height: 150px;
+    height: 300px;
     box-shadow: 10px 10px 20px grey;
     font-size: 40px;
     margin-left: 60px;
@@ -358,4 +358,46 @@ products p { color: black; font-size: 20px; }
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 2vw;
+}
+
+.buy_button{
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    display: block;
+    border-radius: 15px;
+    background-color: rgb(255, 57, 43);
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+
+}
+
+.buy_button p{
+    width: 200px;
+    height: 50px;
+    font-size: 20pt;
+    font-family: Verdana;
+    position: absolute;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.buy_button:hover{
+    color: white;
+}
+
+.buy_button:active{
+    width: 180px;
+    height: 40px;
+    margin-left: 30px;
+    margin-top: 15px;
+}
+.buy_button:active p{
+    width: 180px;
+    height: 40px;
+
 }

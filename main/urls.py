@@ -8,7 +8,7 @@ urlpatterns = [
     path('favourites', views.favourites, name='fav'),
     path('product/<int:pk>', views.Product_page.as_view(), name='product_page'),
     path('category/<str:key>', views.category_page, name='category_page'),
-    path('login', views.login, name='login'), #вход
+    path('login', views.login, name='login'),
     path('registration', views.registration, name='registration'),
     path('profile/general_data', views.profile_general_data, name='profile_general_data'),
     path('profile/sign_out', views.sign_out, name='sign_out'),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('profile/sell_history', views.profile_sell_history, name='profile_sell_history'),
     path('profile/my_products', views.profile_my_products, name='profile_my_products'),
     path('profile', views.profile, name='profile'),
+    path('buy_product/<int:pk>', views.Buy_product.as_view(), name='buy_product')
 
 
 ]

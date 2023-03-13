@@ -23,8 +23,16 @@
                 <div style="border-radius: 10px; margin-left:50px; margin-top: -15px; font-size: 12pt; color: white; width: 55px; height: 25px; background-color: red">
                     <p style="margin-left:5px;">-{{ product.percent_discount }}%</p>
                 </div>
-
             </div>
+            {% if user.is_registered %}
+                <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                    <p>Купить</p>
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" class="buy_button">
+                    <p>Купить</p>
+                </a>
+            {% endif %}
         {% else %}
             <p class="product_price_with_discount_in_product_page">{{ product.price }} ₽</p>
         {% endif %}

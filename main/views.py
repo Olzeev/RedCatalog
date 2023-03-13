@@ -225,3 +225,17 @@ def profile_my_products(request):
     return render(request, 'main/profile/profile_my_products.html', {"user_header": str(user),
                                                                       "is_registered": user.is_registered,
                                                                       "user": user})
+
+
+class Buy_product(DetailView):
+    model = Products
+    template_name = 'main/buy_product.html'
+    context_object_name = 'product'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(Buy_product,
+                        self).get_context_data(*args, **kwargs)
+        # add extra field
+        context["user_header"] = str(user)
+        context["user"] = user
+        return context
