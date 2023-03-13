@@ -5,18 +5,18 @@
     <div>
         <div class="general_data_content">
             <div>
-                {% if user.name %}
-                    <p>Имя: {{ user.name }}</p>
+                {% if user.user_name %}
+                    <p>Имя: {{ user.user_name }}</p>
                 {% else %}
                     <p>Имя: -</p>
                 {% endif %}
 
-                {% if user.sname %}
-                    <p>Фамилия: {{ user.sname }}</p>
+                {% if user.user_surname %}
+                    <p>Фамилия: {{ user.user_surname }}</p>
                 {% else %}
                     <p>Фамилия: -</p>
                 {% endif %}
-                <p>Электронная почта: {{user.mail}}</p>
+                <p>Электронная почта: {{user.email}}</p>
                 {% if user.age != -1 %}
                     <p>Возраст: {{user.age}}</p>
                 {% else %}

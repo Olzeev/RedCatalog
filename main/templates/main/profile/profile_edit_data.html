@@ -1,5 +1,18 @@
 {% extends 'main/profile_page.html' %}
 
 {% block profile_content %}
-    <div><p>Редактирование данных</p></div>
+    <div>
+        <p>Редактирование данных</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.user_name }}<br>
+            {{ form.user_surname }}<br>
+            {{ form.age }}<br>
+            {{ form.city }}<br>
+            {{ form.img_link }}<br>
+            <div style="margin-top: 20px;">
+                <button type="submit" class="registration_button">Сохранить</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

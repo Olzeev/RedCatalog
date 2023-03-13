@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Products, Users
 from django.views.generic.detail import DetailView
-from .forms import UsersForm
+from .forms import UsersForm, UsersRefactorForm
 
 
 def sign_in_user(email=''):
@@ -11,6 +11,7 @@ def sign_in_user(email=''):
         if i.email == email:
             return i
     return ""
+
 
 def convert_prices(products):
     for i in products:
@@ -36,6 +37,7 @@ def convert_prices(products):
 
 user_in_account = False
 email_user_in_account = ''
+
 
 def index(request):
     products = Products.objects.order_by("-percent_discount")
@@ -168,6 +170,7 @@ def sign_out(request):
 
 def profile_general_data(request):
     user = sign_in_user(email_user_in_account)
+
     return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
                                                                       "user": user,
                                                                       "user_in_account": user_in_account})
@@ -175,9 +178,22 @@ def profile_general_data(request):
 
 def profile_edit_data(request):
     user = sign_in_user(email_user_in_account)
+    user_refactor = Users.objects.get(id=user.id)
+    if request.method == "POST":
+        form = UsersRefactorForm(request.POST)
+        if form.is_valid():
+            user_refactor.user_name = form['user_name'].value()
+            user_refactor.user_surname = form['user_surname'].value()
+            user_refactor.age = int(form['age'].value())
+            user_refactor.city = form['city'].value()
+            user_refactor.save()
+            return redirect("shop")
+
+    form = UsersRefactorForm()
     return render(request, 'main/profile/profile_edit_data.html', {"user_header": str(user),
-                                                                      "user": user,
-                                                                      "user_in_account": user_in_account})
+                                                                    "user": user,
+                                                                    "user_in_account": user_in_account,
+                                                                    "form": form})
 
 
 def profile_purchase_history(request):
