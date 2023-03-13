@@ -182,10 +182,14 @@ def profile_edit_data(request):
     if request.method == "POST":
         form = UsersRefactorForm(request.POST)
         if form.is_valid():
-            user_refactor.user_name = form['user_name'].value()
-            user_refactor.user_surname = form['user_surname'].value()
-            user_refactor.age = int(form['age'].value())
-            user_refactor.city = form['city'].value()
+            if form['user_name'].value() != '':
+                user_refactor.user_name = form['user_name'].value()
+            if form['user_surname'].value() != '':
+                user_refactor.user_surname = form['user_surname'].value()
+            if form['age'].value() != '':
+                user_refactor.age = int(form['age'].value())
+            if form['city'].value() != '':
+                user_refactor.city = form['city'].value()
             user_refactor.save()
             return redirect("shop")
 

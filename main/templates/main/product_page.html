@@ -29,7 +29,7 @@
                     <p>Купить</p>
                 </a>
             {% else %}
-                <a href="{% url 'login' %}" class="buy_button">
+                <a href="{% url 'buy_product' product.id %}" class="buy_button">
                     <p>Купить</p>
                 </a>
             {% endif %}
