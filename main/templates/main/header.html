@@ -19,7 +19,7 @@
         <li class="nav-item"><a href="{% url 'aktsii' %}" class="nav-link link-dark px-2">Акции</a></li>
         <li class="nav-item"><a href="{% url 'fav' %}" class="nav-link link-dark px-2">Избранное</a></li>
       </ul>
-      {% if user.is_registered %}
+      {% if user_in_account %}
         <a href="{% url 'profile' %}" class="header_user" >
             <div>
                 {% if user.img_link %}

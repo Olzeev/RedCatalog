@@ -5,53 +5,12 @@ from django.views.generic.detail import DetailView
 from .forms import UsersForm
 
 
-def create_new_user(mail):
-    user_new = User(None)
-    user_new.is_registered = True
-    user_new.mail = mail
-    user_new.name = ''
-    user_new.sname = ''
-    user_new.age = -1
-    user_new.city = ''
-    user_new.money = 100000
-    user_new.products_purchased = 0
-    user_new.products_sold = 0
-    user_new.money_earned = 0
-    user_new.money_spend = 0
-    user_new.img_link = ''
-    return user_new
-
-
-class User:
-    def __init__(self, user):
-        if user is None:
-            self.is_registered = False
-        else:
-            self.mail = user.email
-            self.is_registered = True
-            self.name = user.user_name
-            self.sname = user.user_surname
-            self.age = user.age
-            self.city = user.city
-            self.money = user.money
-            self.products_purchased = user.products_purchased
-            self.products_sold = user.products_sold
-            self.money_earned = user.money_earned
-            self.money_spend = user.money_spend
-            self.img_link = user.img_link
-
-    def __str__(self):
-        if self.is_registered:
-            if self.name:
-                if self.sname:
-                    return f"{self.name} {self.sname}"
-                else:
-                    return f"{self.name}"
-            else:
-                return self.mail
-        else:
-            return ''
-
+def sign_in_user(email=''):
+    users = Users.objects.all()
+    for i in users:
+        if i.email == email:
+            return i
+    return ""
 
 def convert_prices(products):
     for i in products:
@@ -75,16 +34,18 @@ def convert_prices(products):
         i.price_with_discount = new_price[::-1]
 
 
-user = User(None)
-
+user_in_account = False
+email_user_in_account = ''
 
 def index(request):
     products = Products.objects.order_by("-percent_discount")
     convert_prices(products)
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/index.html', {"top_products": products[:5],
                                                "products": products[5:],
                                                "user_header": str(user),
-                                               "user": user})
+                                               "user": user,
+                                               "user_in_account": user_in_account})
 
 
 class Product_page(DetailView):
@@ -95,43 +56,52 @@ class Product_page(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(Product_page,
                         self).get_context_data(*args, **kwargs)
+        user = sign_in_user(email_user_in_account)
         # add extra field
         context["user_header"] = str(user)
         context["user"] = user
+        context["user_in_account"] = user_in_account
         return context
 
 
 def category_page(request, key):
     products = Products.objects.order_by("-percent_discount")
-
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/category_page.html', {"products": products,
                                                        "key": key,
                                                        "user_header": str(user),
-                                                       "user": user})
+                                                       "user": user,
+                                                       "user_in_account": user_in_account})
 
 
 def catalog(request):
     products = Products.objects.all()
     categories = sorted(set([i.category for i in products]))
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/catalog.html', {"products": categories,
                                                  "user_header": str(user),
-                                                 "user": user})
+                                                 "user": user,
+                                                 "user_in_account": user_in_account})
 
 
 def stock(request):
     products = Products.objects.order_by("-percent_discount")
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/stock.html', {"products": products,
                                                "user_header": str(user),
-                                               "user": user})
+                                               "user": user,
+                                               "user_in_account": user_in_account})
 
 
 def favourites(request):
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/favourites.html', {"user_header": str(user),
-                                                      "user": user})
+                                                    "user": user,
+                                                    "user_in_account": user_in_account})
 
 
 def login(request):
-    global user
+    global user_in_account
     error = ''
     error_code = -1       # -1: нет ошибок, 0: нет такого пользователя, 1: неверный пароль
     if request.method == "POST":
@@ -139,11 +109,9 @@ def login(request):
         password = request.POST.get("password")
         users = Users.objects.all()
         flag = False
-        user_found = None
         for i in users:
             if i.email == email and i.password == password:
                 flag = True
-                user_found = i
                 break
             elif i.email == email:
                 flag = False
@@ -151,8 +119,9 @@ def login(request):
                 error = 'Неверный пароль'
                 break
         if flag:
-            user = User(user_found)
-
+            global user_in_account, email_user_in_account
+            user_in_account = True
+            email_user_in_account = email
             return redirect("shop")
         else:
             if error_code == -1:
@@ -172,13 +141,12 @@ def registration(request):
             if i.email == form["email"].value():
                 flag = False
                 error = "Пользователь с такой электронной почтой уже зарегистрирован"
-
                 break
         if form.is_valid() and flag:
-            global user
+            global user_in_account, email_user_in_account
             form.save()
-            user = create_new_user(form["email"].value())
-
+            user_in_account = True
+            email_user_in_account = form["email"].value()
             return redirect("shop")
 
     form = UsersForm()
@@ -186,45 +154,51 @@ def registration(request):
 
 
 def profile(request):
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered,
-                                                                      "user": user})
+                                                                      "user": user,
+                                                                      "user_in_account": user_in_account})
 
 
 def sign_out(request):
-    global user
-    user = User(None)
+    global user_in_account
+    user_in_account = False
     return redirect('shop')
 
 
 def profile_general_data(request):
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered,
-                                                                      "user": user})
+                                                                      "user": user,
+                                                                      "user_in_account": user_in_account})
 
 
 def profile_edit_data(request):
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/profile/profile_edit_data.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered,
-                                                                      "user": user})
+                                                                      "user": user,
+                                                                      "user_in_account": user_in_account})
 
 
 def profile_purchase_history(request):
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/profile/profile_purchase_history.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered,
-                                                                      "user": user})
+                                                                      "user": user,
+                                                                      "user_in_account": user_in_account})
 
 
 def profile_sell_history(request):
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/profile/profile_sell_history.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered,
-                                                                      "user": user})
+                                                                      "user": user,
+                                                                      "user_in_account": user_in_account})
 
 
 def profile_my_products(request):
+    user = sign_in_user(email_user_in_account)
     return render(request, 'main/profile/profile_my_products.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered,
-                                                                      "user": user})
+                                                                      "user": user,
+                                                                      "user_in_account": user_in_account})
 
 
 class Buy_product(DetailView):
@@ -235,7 +209,9 @@ class Buy_product(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(Buy_product,
                         self).get_context_data(*args, **kwargs)
+        user = sign_in_user(email_user_in_account)
         # add extra field
         context["user_header"] = str(user)
         context["user"] = user
+        context["user_in_account"] = user_in_account
         return context

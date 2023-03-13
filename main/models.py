@@ -25,7 +25,7 @@ class Users(models.Model):
     password = models.CharField("Пароль", max_length=35)
     user_name = models.CharField("Имя", max_length=25, default='', blank=True)
     user_surname = models.CharField("Фамилия", max_length=25, default='', blank=True)
-    img_link = models.TextField("Ссылка на изображение для аватарки", default='', blank=True)
+    img_link = models.URLField("Ссылка на изображение для аватарки", default='', blank=True)
     age = models.IntegerField("Возраст", default=-1)
     city = models.CharField("Город", max_length=40, default='', blank=True)
     money = models.IntegerField("Баланс", default=100000)
@@ -35,6 +35,11 @@ class Users(models.Model):
     money_spend = models.IntegerField('Потрачено на покупки', default=0)
 
     def __str__(self):
+        if self.user_name:
+            if self.user_surname:
+                return f"{self.user_name} {self.user_surname}"
+            else:
+                return f"{self.user_name}"
         return self.email
 
     class Meta:
