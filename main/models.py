@@ -23,12 +23,16 @@ class Products(models.Model):
 class Users(models.Model):
     email = models.CharField("Электронная почта", max_length=50)
     password = models.CharField("Пароль", max_length=35)
-    user_name = models.CharField("Имя", max_length=25, default='')
-    user_surname = models.CharField("Фамилия", max_length=25, default='')
-    age = models.IntegerField("Возраст", default=18)
-    sity = models.CharField("Город", max_length=40, default='')
+    user_name = models.CharField("Имя", max_length=25, default='', blank=True)
+    user_surname = models.CharField("Фамилия", max_length=25, default='', blank=True)
+    img_link = models.TextField("Ссылка на изображение для аватарки", default='', blank=True)
+    age = models.IntegerField("Возраст", default=-1)
+    city = models.CharField("Город", max_length=40, default='', blank=True)
     money = models.IntegerField("Баланс", default=100000)
-    flag = models.BooleanField("Продавец или нет", default=False)
+    products_purchased = models.IntegerField('Количество купленных товаров', default=0)
+    products_sold = models.IntegerField('Колчество проданных товаров', default=0)
+    money_earned = models.IntegerField('Заработок на продажах', default=0)
+    money_spend = models.IntegerField('Потрачено на покупки', default=0)
 
     def __str__(self):
         return self.email

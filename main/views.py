@@ -5,18 +5,45 @@ from django.views.generic.detail import DetailView
 from .forms import UsersForm
 
 
-class User:
-    def __init__(self, is_registered, mail, name, sname):
-        self.mail = mail
-        self.is_registered = is_registered
-        self.name = name
-        self.sname = sname
+def create_new_user(mail):
+    user_new = User(None)
+    user_new.is_registered = True
+    user_new.mail = mail
+    user_new.name = ''
+    user_new.sname = ''
+    user_new.age = -1
+    user_new.city = ''
+    user_new.money = 100000
+    user_new.products_purchased = 0
+    user_new.products_sold = 0
+    user_new.money_earned = 0
+    user_new.money_spend = 0
+    user_new.img_link = ''
+    return user_new
 
+
+class User:
+    def __init__(self, user):
+        if user is None:
+            self.is_registered = False
+        else:
+            self.mail = user.email
+            self.is_registered = True
+            self.name = user.user_name
+            self.sname = user.user_surname
+            self.age = user.age
+            self.city = user.city
+            self.money = user.money
+            self.products_purchased = user.products_purchased
+            self.products_sold = user.products_sold
+            self.money_earned = user.money_earned
+            self.money_spend = user.money_spend
+            self.img_link = user.img_link
 
     def __str__(self):
         if self.is_registered:
-            if self.name is not None:
-                if self.sname is not None:
+            if self.name:
+                if self.sname:
                     return f"{self.name} {self.sname}"
                 else:
                     return f"{self.name}"
@@ -48,7 +75,7 @@ def convert_prices(products):
         i.price_with_discount = new_price[::-1]
 
 
-user = User(False, None, None, None)
+user = User(None)
 
 
 def index(request):
@@ -57,7 +84,7 @@ def index(request):
     return render(request, 'main/index.html', {"top_products": products[:5],
                                                "products": products[5:],
                                                "user_header": str(user),
-                                               "is_registered": user.is_registered})
+                                               "user": user})
 
 
 class Product_page(DetailView):
@@ -70,7 +97,7 @@ class Product_page(DetailView):
                         self).get_context_data(*args, **kwargs)
         # add extra field
         context["user_header"] = str(user)
-        context["is_registered"] = user.is_registered
+        context["user"] = user
         return context
 
 
@@ -80,7 +107,7 @@ def category_page(request, key):
     return render(request, 'main/category_page.html', {"products": products,
                                                        "key": key,
                                                        "user_header": str(user),
-                                                       "is_registered": user.is_registered})
+                                                       "user": user})
 
 
 def catalog(request):
@@ -88,19 +115,19 @@ def catalog(request):
     categories = sorted(set([i.category for i in products]))
     return render(request, 'main/catalog.html', {"products": categories,
                                                  "user_header": str(user),
-                                                 "is_registered": user.is_registered})
+                                                 "user": user})
 
 
 def stock(request):
     products = Products.objects.order_by("-percent_discount")
     return render(request, 'main/stock.html', {"products": products,
                                                "user_header": str(user),
-                                               "is_registered": user.is_registered})
+                                               "user": user})
 
 
 def favourites(request):
     return render(request, 'main/favourites.html', {"user_header": str(user),
-                                                      "is_registered": user.is_registered})
+                                                      "user": user})
 
 
 def login(request):
@@ -124,10 +151,7 @@ def login(request):
                 error = 'Неверный пароль'
                 break
         if flag:
-            user.mail = user_found.email
-            user.is_registered = True
-            user.name = user_found.user_name if len(user_found.user_name) else None
-            user.sname = user_found.user_surname if len(user_found.user_surname) else None
+            user = User(user_found)
 
             return redirect("shop")
         else:
@@ -151,9 +175,10 @@ def registration(request):
 
                 break
         if form.is_valid() and flag:
+            global user
             form.save()
-            user.mail = form["email"].value()
-            user.is_registered = True
+            user = create_new_user(form["email"].value())
+
             return redirect("shop")
 
     form = UsersForm()
@@ -162,35 +187,41 @@ def registration(request):
 
 def profile(request):
     return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered})
+                                                                      "is_registered": user.is_registered,
+                                                                      "user": user})
 
 
 def sign_out(request):
-    user.is_registered = False
-    user.name, user.sname, user.mail = None, None, None
+    global user
+    user = User(None)
     return redirect('shop')
 
 
 def profile_general_data(request):
     return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered})
+                                                                      "is_registered": user.is_registered,
+                                                                      "user": user})
 
 
 def profile_edit_data(request):
     return render(request, 'main/profile/profile_edit_data.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered})
+                                                                      "is_registered": user.is_registered,
+                                                                      "user": user})
 
 
 def profile_purchase_history(request):
     return render(request, 'main/profile/profile_purchase_history.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered})
+                                                                      "is_registered": user.is_registered,
+                                                                      "user": user})
 
 
 def profile_sell_history(request):
     return render(request, 'main/profile/profile_sell_history.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered})
+                                                                      "is_registered": user.is_registered,
+                                                                      "user": user})
 
 
 def profile_my_products(request):
     return render(request, 'main/profile/profile_my_products.html', {"user_header": str(user),
-                                                                      "is_registered": user.is_registered})
+                                                                      "is_registered": user.is_registered,
+                                                                      "user": user})

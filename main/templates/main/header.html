@@ -19,9 +19,18 @@
         <li class="nav-item"><a href="{% url 'aktsii' %}" class="nav-link link-dark px-2">Акции</a></li>
         <li class="nav-item"><a href="{% url 'fav' %}" class="nav-link link-dark px-2">Избранное</a></li>
       </ul>
-      {% if is_registered %}
+      {% if user.is_registered %}
         <a href="{% url 'profile' %}" class="header_user" >
-            <p>{{ user_header }}</p>
+            <div>
+                {% if user.img_link %}
+                    <img src="{{ user.img_link }}" style="width: 25px; height: 25px; margin-left: 10px; margin-top: 5px; border-radius: 5px;">
+                {% else %}
+                    <img src="{% static 'main/png/default_avatar.png' %}" style="width: 25px; height: 25px; margin-left: 10px; margin-top: 5px; border-radius: 5px;">
+                {% endif %}
+            </div>
+            <div>
+                <p>{{ user_header }}</p>
+            </div>
         </a>
 
       {% else %}
