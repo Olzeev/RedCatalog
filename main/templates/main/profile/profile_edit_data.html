@@ -5,13 +5,12 @@
         <p>Редактирование данных</p>
         <form method="post">
             {% csrf_token %}
-            {{ form.user_name }}<br>
-            {{ form.user_surname }}<br>
-            {{ form.age }}<br>
+            {{ form.user_name }}<br><br>
+            {{ form.user_surname }}<br><br>
+            {{ form.age }}<br><br>
             {{ form.city }}<br>
-            {{ form.img_link }}<br>
             <div style="margin-top: 20px;">
-                <button type="submit" class="registration_button">Сохранить</button>
+                <button type="submit" class="edit_data_button">Сохранить</button>
             </div>
         </form>
     </div>
