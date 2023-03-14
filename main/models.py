@@ -12,6 +12,7 @@ class Products(models.Model):
     price_with_discount = models.IntegerField("Цена со скидкой")
     percent_discount = models.IntegerField("Процент скидки", default=0)
     count = models.IntegerField("Количество товара (в шк)", default=1)
+    seller = models.CharField("Продавец", default="Red Catalog", max_length=40)
 
     def __str__(self):
         return f"{self.product_name} ({self.brand}, {self.price} руб)"
@@ -58,3 +59,39 @@ class Favourites(models.Model):
     class Meta:
         verbose_name = "Избранное"
         verbose_name_plural = "Избранное"
+
+
+class Purchased(models.Model):
+    id_user = models.IntegerField("ID пользователя")
+    id_product = models.IntegerField("ID товара")
+
+    def __str__(self):
+        return f"{self.id_user} -> {self.id_product}"
+
+    class Meta:
+        verbose_name = "Купленное"
+        verbose_name_plural = "Купленное"
+
+
+class Sold(models.Model):
+    id_user = models.IntegerField("ID пользователя")
+    id_product = models.IntegerField("ID товара")
+
+    def __str__(self):
+        return f"{self.id_user} -> {self.id_product}"
+
+    class Meta:
+        verbose_name = "Проданное"
+        verbose_name_plural = "Проданное"
+
+
+class Card(models.Model):
+    id_user = models.IntegerField("ID пользователя")
+    id_product = models.IntegerField("ID товара")
+
+    def __str__(self):
+        return f"{self.id_user} -> {self.id_product}"
+
+    class Meta:
+        verbose_name = "Карзины"
+        verbose_name_plural = "Карзины"

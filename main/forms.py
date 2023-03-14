@@ -1,4 +1,4 @@
-from .models import Users
+from .models import Users, Purchased
 from django.forms import ModelForm, TextInput
 
 
@@ -62,3 +62,4 @@ class UsersRefactorForm(ModelForm):
                 "size": "30"
             })
         }
+

@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Products, Users
+from .models import Products, Users, Purchased
 from django.views.generic.detail import DetailView
 from .forms import UsersForm, UsersRefactorForm
 
@@ -59,11 +59,32 @@ class Product_page(DetailView):
         context = super(Product_page,
                         self).get_context_data(*args, **kwargs)
         user = sign_in_user(email_user_in_account)
-        # add extra field
         context["user_header"] = str(user)
         context["user"] = user
         context["user_in_account"] = user_in_account
         return context
+
+
+def buy_product(request, key):
+    product = Products.objects.get(id=key)
+    user = sign_in_user(email_user_in_account)
+    price = product.price
+    if product.discount:
+        price = product.price_with_discount
+    if user.money >= price:
+        user_buy_product = Purchased()
+        user_buy_product.id_user = user.id
+        user_buy_product.id_product = key
+        user_buy_product.save()
+
+        user.money -= price
+        user.save()
+
+        product.count -= 1
+        product.save()
+
+        return redirect("shop")
+    return render(request, 'main/index.html')
 
 
 def category_page(request, key):
@@ -157,6 +178,18 @@ def registration(request):
 
 def profile(request):
     user = sign_in_user(email_user_in_account)
+    purchased = Purchased.objects.filter(id_user=user.id)
+    purchased_money = 0
+    purchased_count = 0
+    for i in purchased:
+        purchased_count += 1
+        product = Products.objects.get(id=i.id_product)
+        price = product.price
+        if product.discount:
+            price = product.price_with_discount
+        purchased_money += price
+        user.products_purchased = purchased_count
+        user.money_spend = purchased_money
     return render(request, 'main/profile/profile_general_data.html', {"user_header": str(user),
                                                                       "user": user,
                                                                       "user_in_account": user_in_account})
@@ -220,18 +253,3 @@ def profile_my_products(request):
                                                                       "user": user,
                                                                       "user_in_account": user_in_account})
 
-
-class Buy_product(DetailView):
-    model = Products
-    template_name = 'main/buy_product.html'
-    context_object_name = 'product'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(Buy_product,
-                        self).get_context_data(*args, **kwargs)
-        user = sign_in_user(email_user_in_account)
-        # add extra field
-        context["user_header"] = str(user)
-        context["user"] = user
-        context["user_in_account"] = user_in_account
-        return context

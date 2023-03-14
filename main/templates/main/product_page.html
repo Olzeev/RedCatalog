@@ -13,7 +13,8 @@
     <div class="product_description">
         <p>Описание:    {{ product.description }}</p>
         <p>Бренд:   {{ product.brand }}</p>
-        <p>Категория: {{ product.category }}</p><br>
+        <p>Категория: {{ product.category }}</p>
+        <p>Продавец: {{ product.seller }}</p><br>
         <b>Осталось: {{ product.count }}</b>
     </div>
     <div class="product_price">
@@ -25,17 +26,26 @@
                     <p style="margin-left:5px;">-{{ product.percent_discount }}%</p>
                 </div>
             </div>
-            {% if user.is_registered %}
+            {% if user_in_account %}
                 <a href="{% url 'buy_product' product.id %}" class="buy_button">
                     <p>Купить</p>
                 </a>
             {% else %}
-                <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                <a href="{% url 'login' %}" class="buy_button">
                     <p>Купить</p>
                 </a>
             {% endif %}
         {% else %}
             <p class="product_price_with_discount_in_product_page">{{ product.price }} ₽</p>
+                        {% if user_in_account %}
+                <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                    <p>Купить</p>
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" class="buy_button">
+                    <p>Купить</p>
+                </a>
+            {% endif %}
         {% endif %}
     </div>
 </div>
