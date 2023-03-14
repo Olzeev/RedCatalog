@@ -2,4 +2,26 @@
 
 {% block profile_content %}
     <div><p>История покупок</p></div>
+    <products>
+        {% for i in products_purchased %}
+            <a href="{% url 'product_page' i.id %}">
+                <div class="product_box">
+
+                    <p>{{ i.product_name }}</p>
+
+                    <div class="image_box_prod">
+                        <img src={{ i.img_link }} class="product_image">
+                    </div>
+
+                    {% if i.discount %}
+                        <p class="price_with_discount_on_main">{{ i.price_with_discount }} ₽</p>
+                        <p class="price_old">{{ i.price }} ₽</p>
+                    {% else %}
+                        <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
+                    {% endif %}
+
+                </div>
+            </a>
+        {% endfor %}
+    </products>
 {% endblock %}

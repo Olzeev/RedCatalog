@@ -10,7 +10,7 @@
 {% csrf_token %}
 <products>
     {% for i in products %}
-        {% if i.category == key %}
+        {% if i.category == key and i.count > 0 %}
             <a href="{% url 'product_page' i.id %}">
                 <div class="product_box">
 
