@@ -93,5 +93,5 @@ class Card(models.Model):
         return f"{self.id_user} -> {self.id_product}"
 
     class Meta:
-        verbose_name = "Карзины"
-        verbose_name_plural = "Карзины"
+        verbose_name = "Корзины"
+        verbose_name_plural = "Корзины"
