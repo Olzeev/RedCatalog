@@ -1,15 +1,45 @@
 {% extends 'main/header.html' %}
+{% load static %}
 
 {% block title %}
 Red Catalog - Главная
 {% endblock %}
 
 {% block content %}
-<h1 style="margin-top: 50px;">Наши лучшие товары</h1>
+
 {% csrf_token %}
-<products>
-    {% for i in top_products %}
-        {% if i.count > 0 %}
+<img src="{% static 'main/png/Media1.png' %}" style="width: 100%; margin-top: 50px; border-radius: 20px">
+<div class="best_products_box">
+    <h1 style="position: relative; text-align: center; margin-top: 30px; color: rgb(255, 100, 100);">Выгодные предложения</h1>
+    <products>
+        {% for i in top_products %}
+            {% if i.count > 0 %}
+                <a href="{% url 'product_page' i.id %}">
+                    <div class="product_box">
+
+                        <p>{{ i.product_name }}</p>
+
+                        <div class="image_box_prod">
+                            <img src={{ i.img_link }} class="product_image">
+                        </div>
+
+                        {% if i.discount %}
+                            <p class="price_with_discount_on_main">{{ i.price_with_discount }} ₽</p>
+                            <p class="price_old">{{ i.price }} ₽</p>
+                        {% else %}
+                            <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
+                        {% endif %}
+
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </products>
+</div>
+<img src="{% static 'main/png/Media2.png' %}" style="width: 100%; margin-top: 50px; border-radius: 20px">
+<div class="other_products_box">
+    <products>
+        {% for i in products %}
             <a href="{% url 'product_page' i.id %}">
                 <div class="product_box">
 
@@ -28,27 +58,7 @@ Red Catalog - Главная
 
                 </div>
             </a>
-        {% endif %}
-    {% endfor %}
-    {% for i in products %}
-        <a href="{% url 'product_page' i.id %}">
-            <div class="product_box">
-
-                <p>{{ i.product_name }}</p>
-
-                <div class="image_box_prod">
-                    <img src={{ i.img_link }} class="product_image">
-                </div>
-
-                {% if i.discount %}
-                    <p class="price_with_discount_on_main">{{ i.price_with_discount }} ₽</p>
-                    <p class="price_old">{{ i.price }} ₽</p>
-                {% else %}
-                    <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
-                {% endif %}
-
-            </div>
-        </a>
-    {% endfor %}
-</products>
+        {% endfor %}
+    </products>
+</div>
 {% endblock %}

@@ -16,6 +16,7 @@ body{
 }
 
 products {
+    position: relative;
     margin-top: 50px;
     width: 250px;
     height: 320px;
@@ -84,7 +85,21 @@ products p { color: black; font-size: 20px; }
     font-weight: 700;
 }
 
+.best_products_box{
+    display: block;
+    position: relative;
+    top: 30px;
+    width: 100%;
+    height: 650px;
+    border: 10px solid rgb(255, 100, 100);
+    border-radius: 30px;
 
+}
+
+.best_products_box products{
+    margin-left: 50px;
+
+}
 
 .price_with_discount_on_main{
     margin-left: 0px;
