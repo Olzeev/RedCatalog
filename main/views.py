@@ -3,7 +3,9 @@ from django.shortcuts import render, redirect
 from .models import Products, Users, Purchased
 from django.views.generic.detail import DetailView
 from .forms import UsersForm, UsersRefactorForm
-
+from django.conf import settings
+from django.core.mail import send_mail
+import random
 
 def sign_in_user(email=''):
     users = Users.objects.all()
@@ -155,6 +157,13 @@ def login(request):
 
 
 def registration(request):
+    password = ''.join([str(random.randint(0, 9)) for i in range(6)])
+    send_mail(
+            'Код подтверждения',
+            f'Здравствуйте! Ваш код для подтверждения почты: {password}',
+            settings.EMAIL_HOST_USER,
+            ['olzeevmax@gmail.com'],
+        )
     error = ""
     if request.method == "POST":
         form = UsersForm(request.POST)
