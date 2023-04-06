@@ -157,13 +157,7 @@ def login(request):
 
 
 def registration(request):
-    password = ''.join([str(random.randint(0, 9)) for i in range(6)])
-    send_mail(
-            'Код подтверждения',
-            f'Здравствуйте! Ваш код для подтверждения почты: {password}',
-            settings.EMAIL_HOST_USER,
-            ['olzeevmax@gmail.com'],
-        )
+
     error = ""
     if request.method == "POST":
         form = UsersForm(request.POST)

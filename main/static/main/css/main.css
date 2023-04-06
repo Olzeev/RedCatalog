@@ -1,18 +1,13 @@
-body{
-}
+
 
 .content {
     float: left;
     color: black;
     position: absolute;
-    top: 20%;
+    top: 50px;
     left: 5%;
     text-align: left;
     width: 90%
-}
-
-.nav me-auto {
-    background: #e6e6e6;
 }
 
 products {
@@ -220,7 +215,7 @@ products p { color: black; font-size: 20px; }
     width: 100%;
     height: 100%;
     position: absolute;
-
+    margin-top: 100px;
 }
 
 .login_box{
@@ -315,26 +310,23 @@ products p { color: black; font-size: 20px; }
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 250px;
-    height: 35px;
+    height: 40px;
     font-size: 16px;
-    box-shadow: 5px 5px 20px grey;
-    border-radius: 10px;
+    box-shadow: 2px 2px 7px rgb(200, 200, 200);
+    border-radius: 7px;
     text-decoration: none;
     color: black;
     transition: 0.2s;
+    position: absolute;
+    right: 30px;
+    top: 10px;
 }
-.header_user p{transition: 0.2s}
-.header_user img{transition: 0.2s}
 
 .header_user:hover{
     color: black;
-    margin-right: 2px;
-    margin-top: 2px;
-    width: 246px;
-    height: 31px;
+    background-color: rgb(220, 220, 220);
+    box-shadow: 3px 3px 10px rgb(200, 200, 200);
 }
-.header_user:hover p{ margin-top: 2px; }
-.header_user:hover img{ margin-top: 2px; width: 23px; height: 23px;}
 
 .header_user p{
     width: 200px;
@@ -342,14 +334,15 @@ products p { color: black; font-size: 20px; }
     overflow: hidden;
     text-overflow: ellipsis;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
 .header_user img{
-    width: 25px;
-    height: 25px;
-    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
     margin-top: 5px;
+    border-radius: 5px;
 }
 
 .profile_list_button{
@@ -479,3 +472,10 @@ products p { color: black; font-size: 20px; }
     width: 680px;
     height: 180px;
 }
+
+
+
+
+
+
+

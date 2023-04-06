@@ -1,0 +1,123 @@
+.main_box{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    min-width: 1040px;
+    margin-top:10px;
+}
+
+.logo{
+    position: relative;
+    width: 100px;
+    height: 50px;
+    left: 5px;
+    top: 5px;
+    text-align: center;
+}
+
+.button{
+    position: relative;
+    left: 10px;
+    top: 5px;
+    min-width: 100px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+}
+.button p{
+    position: relative;
+    top: 10px;
+}
+
+.button:hover{
+    color: rgb(255, 70, 70);
+}
+
+.reg_button_header{
+    text-align: center;
+    width: 150px;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    right: 120px;
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    color: white;
+    background-color: rgb(255, 100, 100);
+    border-radius: 10px;
+    transition: 0.2s;
+    text-decoration: none;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.reg_button_header:hover{
+    background-color: rgb(200, 80, 80);
+    color: rgb(200, 200, 200);
+}
+.reg_button_header p{
+    position: relative;
+    top: 5px;
+}
+
+.login_button_header{
+    text-align: center;
+    width: 100px;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    color: rgb(255, 100, 100);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.login_button_header:hover{
+    color: rgb(200, 80, 80);
+}
+
+.login_button_header p{
+    position: relative;
+    top: 10px;
+}
+
+.search_box{
+    position: absolute;
+    display: flex;
+    right: 300px;
+    width: 190px;
+    height: 60%;
+    top: 20%;
+    padding-left: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 7px rgb(200, 200, 200);
+    transition: 0.3s;
+    outline: none;
+}
+
+.search_box_input{
+    outline: none;
+    border: none;
+    width: 150px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.search_box_input:focus{
+    border: none;
+}
+
+.search_box:focus-within{
+    width: 500px;
+    box-shadow: 5px 5px 15px rgb(200, 200, 200);
+}
+.search_box:focus-within .search_box_input{
+    width: 460px;
+}
