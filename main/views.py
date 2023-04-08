@@ -81,7 +81,7 @@ def buy_product(request, key):
         product.save()
 
         data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account}
-        return render(request, 'main/product_success.html', data)
+        return render(request, 'main/purchase_success.html', data)
     return render(request, 'main/index.html')
 
 
