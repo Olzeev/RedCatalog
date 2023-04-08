@@ -43,24 +43,26 @@ Red Catalog - Главная
 <div class="other_products_box">
     <products>
         {% for i in products %}
-            <a href="{% url 'product_page' i.id %}">
-                <div class="product_box">
+            {% if i.count > 0 %}
+                <a href="{% url 'product_page' i.id %}">
+                    <div class="product_box">
 
-                    <p>{{ i.product_name }}</p>
+                        <p>{{ i.product_name }}</p>
 
-                    <div class="image_box_prod">
-                        <img src={{ i.img_link }} class="product_image">
+                        <div class="image_box_prod">
+                            <img src={{ i.img_link }} class="product_image">
+                        </div>
+
+                        {% if i.discount %}
+                            <p class="price_with_discount_on_main">{{ i.price_with_discount }} ₽</p>
+                            <p class="price_old">{{ i.price }} ₽</p>
+                        {% else %}
+                            <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
+                        {% endif %}
+
                     </div>
-
-                    {% if i.discount %}
-                        <p class="price_with_discount_on_main">{{ i.price_with_discount }} ₽</p>
-                        <p class="price_old">{{ i.price }} ₽</p>
-                    {% else %}
-                        <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
-                    {% endif %}
-
-                </div>
-            </a>
+                </a>
+            {% endif %}
         {% endfor %}
     </products>
 </div>
