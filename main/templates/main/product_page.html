@@ -39,7 +39,7 @@
                 {% endif %}
             {% else %}
                 {% if product.count > 0 %}
-                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                    <a href="{% url 'login' %}" class="buy_button">
                         <p>Купить</p>
                     </a>
                 {% else %}
@@ -62,7 +62,7 @@
                 {% endif %}
             {% else %}
                 {% if product.count > 0 %}
-                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                    <a href="{% url 'login' %}" class="buy_button">
                         <p>Купить</p>
                     </a>
                 {% else %}

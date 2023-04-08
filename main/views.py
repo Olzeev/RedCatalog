@@ -77,7 +77,8 @@ def buy_product(request, key):
         product.count -= 1
         product.save()
 
-        return redirect("shop")
+        data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account}
+        return render(request, 'main/index.html', data)
     return render(request, 'main/index.html')
 
 
