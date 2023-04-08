@@ -28,25 +28,48 @@
                 </div>
             </div>
             {% if user_in_account %}
-                <a href="{% url 'buy_product' product.id %}" class="buy_button">
-                    <p>Купить</p>
-                </a>
+                {% if product.count > 0 %}
+                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                        <p>Купить</p>
+                    </a>
+                {% else %}
+                    <div class="buy_button_not_available">
+                        <p>Нет в наличии</p>
+                    </div>
+                {% endif %}
             {% else %}
-                <a href="{% url 'login' %}" class="buy_button">
-                    <p>Купить</p>
-                </a>
+                {% if product.count > 0 %}
+                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                        <p>Купить</p>
+                    </a>
+                {% else %}
+                    <div class="buy_button_not_available">
+                        <p>Нет в наличии</p>
+                    </div>
+                {% endif %}
             {% endif %}
         {% else %}
             <p class="product_price_with_discount_in_product_page">{{ product.price }} ₽</p>
-                        {% if user_in_account %}
-                <a href="{% url 'buy_product' product.id %}" class="buy_button">
-                    <p>Купить</p>
-                </a>
-            {% else %}
-
-                    <a href="{% url 'login' %}" class="buy_button">
+            {% if user_in_account %}
+                {% if product.count > 0 %}
+                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
                         <p>Купить</p>
                     </a>
+                {% else %}
+                    <div class="buy_button_not_available">
+                        <p>Нет в наличии</p>
+                    </div>
+                {% endif %}
+            {% else %}
+                {% if product.count > 0 %}
+                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                        <p>Купить</p>
+                    </a>
+                {% else %}
+                    <div class="buy_button_not_available">
+                        <p>Нет в наличии</p>
+                    </div>
+                {% endif %}
 
             {% endif %}
         {% endif %}
@@ -56,11 +79,13 @@
                     <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; bottom: 12px; fill: red">
                 </button>
             </form>
-            <form method="POST">
-                <button class="add_to_cart_button">
-                    <p style="font-size: 11pt; text-align: center; position: relative; top: 10px">Добавить в корзину</p>
-                </button>
-            </form>
+            {% if product.count > 0 %}
+                <form method="POST">
+                    <button class="add_to_cart_button">
+                        <p style="font-size: 11pt; text-align: center; position: relative; top: 10px">Добавить в корзину</p>
+                    </button>
+                </form>
+            {% endif %}
         </div>
     </div>
 </div>
