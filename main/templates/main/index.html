@@ -23,12 +23,15 @@ Red Catalog - Главная
                             <img src={{ i.img_link }} class="product_image">
                         </div>
 
+
                         {% if i.discount %}
                             <p class="price_with_discount_on_main">{{ i.price_with_discount }} ₽</p>
                             <p class="price_old">{{ i.price }} ₽</p>
                         {% else %}
                             <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
                         {% endif %}
+
+
 
                     </div>
                 </a>
