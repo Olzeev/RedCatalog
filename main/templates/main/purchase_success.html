@@ -1,0 +1,26 @@
+{% extends 'main/header.html' %}
+{% load static %}
+
+{% block title %}
+Покупка совершена
+{% endblock %}
+
+{% block content %}
+
+
+<h1 style="position: relative; top: 60px; text-align: center">Покупка совершена успешно!</h1>
+<div style="display: flex; position: relative; top: 100px; left: 40%">
+  <img src="{{ product.img_link }}" style="width: 300px; position: relative; ">
+  <div style="position: relative; left: 50px; font-size: 15pt;">
+    <h2> {{ product.product_name }} </h2>
+    <p>Продавец: {{ product.seller }}</p>
+    <p>Цена без скидок: {{ product.price }}</p>
+    <p>Цена со скидками: {{ product.price_with_discount }}</p>
+    <h4>Спасибо за покупку!</h4>
+    <br>
+    <a href="{% url 'shop' %}" style="text-decoration: none; ">Вернуться на главную</a>
+  </div>
+</div>
+
+
+{% endblock %}
