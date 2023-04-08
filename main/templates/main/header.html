@@ -16,7 +16,9 @@
 <body>
 
 <div class="main_box">
-    <img src="{% static 'main/png/Logo.svg' %}" class="logo" draggable="false">
+    <a href="{% url 'shop' %}">
+        <img src="{% static 'main/png/Logo.svg' %}" class="logo" draggable="false">
+    </a>
     <a style="margin-left: 10px;" class="button" href="{% url 'shop' %}">
         <p>Главная</p>
     </a>

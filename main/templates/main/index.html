@@ -8,7 +8,7 @@ Red Catalog - Главная
 {% block content %}
 
 {% csrf_token %}
-<img src="{% static 'main/png/Media1.png' %}" style="width: 100%; margin-top: 50px; border-radius: 20px">
+<img src="{% static 'main/png/Media1.png' %}" style="width: 100%; margin-top: 50px; border-radius: 20px" draggable="false">
 <div class="best_products_box">
     <h1 style="position: relative; text-align: center; margin-top: 30px; color: rgb(255, 100, 100);">Выгодные предложения</h1>
     <products>
@@ -36,7 +36,7 @@ Red Catalog - Главная
         {% endfor %}
     </products>
 </div>
-<img src="{% static 'main/png/Media2.png' %}" style="width: 100%; margin-top: 50px; border-radius: 20px">
+<img src="{% static 'main/png/Media2.png' %}" style="width: 100%; margin-top: 50px; border-radius: 20px" draggable="false">
 <div class="other_products_box">
     <products>
         {% for i in products %}
