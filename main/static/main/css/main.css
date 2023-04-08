@@ -144,7 +144,7 @@ products p { color: black; font-size: 20px; }
 
 .product_price {
     width: 300px;
-    height: 300px;
+    height: 280px;
     box-shadow: 3px 3px 7px grey;
     font-size: 40px;
     margin-left: 60px;
@@ -402,7 +402,7 @@ products p { color: black; font-size: 20px; }
 .buy_button{
     margin-left: 20px;
     margin-top: 10px;
-    width: 200px;
+    width: 260px;
     height: 50px;
     display: block;
     border-radius: 15px;
@@ -414,19 +414,17 @@ products p { color: black; font-size: 20px; }
 }
 
 .buy_button p{
-    width: 200px;
-    height: 50px;
     font-size: 20pt;
-    font-family: Verdana;
-    position: absolute;
-    margin-top: auto;
-    margin-bottom: auto;
+
+    position: relative;
+
     text-align: center;
-    transition: 0.2s;
+
 }
 
 .buy_button:hover{
-    color: white;
+    color: rgb(200, 200, 200);
+    background-color: rgb(230, 37, 23);
 }
 
 .buy_button:active{
@@ -473,7 +471,7 @@ products p { color: black; font-size: 20px; }
     height: 180px;
 }
 
-.add_to_cart_button{
+.add_to_favourites_button{
     width: 50px;
     height: 50px;
     display: block;
@@ -486,8 +484,28 @@ products p { color: black; font-size: 20px; }
     transition: 0.2s;
 }
 
-.add_to_cart_button:hover{
+.add_to_favourites_button:hover{
     background-color: rgb(200, 200, 200);
+}
+
+.add_to_cart_button{
+    position: relative;
+    top: 20px;
+    border-radius: 15px;
+    display: block;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(40, 100, 255);
+    position: relative;
+    left: 30px;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.add_to_cart_button:hover{
+    color: rgb(200, 200, 200);
+    background-color: rgb(20, 80, 230);
 }
 
 

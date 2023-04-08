@@ -52,19 +52,11 @@ def index(request):
                                                "user_in_account": user_in_account})
 
 
-class Product_page(DetailView):
-    model = Products
-    template_name = 'main/product_page.html'
-    context_object_name = 'product'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(Product_page,
-                        self).get_context_data(*args, **kwargs)
-        user = sign_in_user(email_user_in_account)
-        context["user_header"] = str(user)
-        context["user"] = user
-        context["user_in_account"] = user_in_account
-        return context
+def product_page(request, pk):
+    product = Products.objects.get(id=pk)
+    user = sign_in_user(email_user_in_account)
+    data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account}
+    return render(request, 'main/product_page.html', data)
 
 
 def buy_product(request, key):

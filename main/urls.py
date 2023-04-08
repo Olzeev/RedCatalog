@@ -6,7 +6,7 @@ urlpatterns = [
     path('catalog', views.catalog, name='catalog'),
     path('stock', views.stock, name='aktsii'),
     path('favourites', views.favourites, name='fav'),
-    path('product/<int:pk>', views.Product_page.as_view(), name='product_page'),
+    path('product/<int:pk>', views.product_page, name='product_page'),
     path('buy_product/<str:key>', views.buy_product, name='buy_product'),
     path('category/<str:key>', views.category_page, name='category_page'),
     path('login', views.login, name='login'),
@@ -19,4 +19,3 @@ urlpatterns = [
     path('profile/my_products', views.profile_my_products, name='profile_my_products'),
     path('profile', views.profile, name='profile'),
 ]
-
