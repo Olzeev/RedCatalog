@@ -74,13 +74,30 @@
             {% endif %}
         {% endif %}
         <div style="display: flex;">
-            <a class="add_to_favourites_button">
-                <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
-            </a>
-            {% if product.count > 0 %}
-                <a class="add_to_cart_button">
-                    <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
+            {% if user_in_account %}
+                {% if in_favourite %}
+                    <a href="{% url 'add_to_favourites' product.id %}" class="add_to_favourites_button">
+                        <img src="{% static 'main/png/heart_icon1.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
+                    </a>
+                {% else %}
+                    <a href="{% url 'add_to_favourites' product.id %}" class="add_to_favourites_button">
+                        <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
+                    </a>
+                {% endif %}
+                {% if product.count > 0 %}
+                    <a href="{% url 'add_to_favourites' product.id %}" class="add_to_cart_button">
+                        <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
+                    </a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'login' %}" class="add_to_favourites_button">
+                    <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
                 </a>
+                {% if product.count > 0 %}
+                    <a href="{% url 'login' %}" class="add_to_cart_button">
+                        <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
+                    </a>
+                {% endif %}
             {% endif %}
         </div>
     </div>

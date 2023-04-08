@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Products, Users, Purchased
+from .models import Products, Users, Purchased, Favourites
 from django.views.generic.detail import DetailView
 from .forms import UsersForm, UsersRefactorForm
 from django.conf import settings
@@ -55,7 +55,10 @@ def index(request):
 def product_page(request, pk):
     product = Products.objects.get(id=pk)
     user = sign_in_user(email_user_in_account)
-    data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account}
+    in_favourite = False
+    if user and Favourites.objects.filter(id_user=user.id, id_product=pk):
+        in_favourite = True
+    data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account, 'in_favourite': in_favourite}
     return render(request, 'main/product_page.html', data)
 
 
@@ -259,3 +262,15 @@ def profile_my_products(request):
                                                                       "user": user,
                                                                       "user_in_account": user_in_account})
 
+
+def add_to_favourites(request, key):
+    user = sign_in_user(email_user_in_account)
+    connection = Favourites.objects.filter(id_user=user.id, id_product=key)
+    if connection:
+        connection[0].delete()
+        return redirect("product_page", key)
+    product_add_to_favourite = Favourites()
+    product_add_to_favourite.id_product = key
+    product_add_to_favourite.id_user = user.id
+    product_add_to_favourite.save()
+    return redirect("product_page", key)
