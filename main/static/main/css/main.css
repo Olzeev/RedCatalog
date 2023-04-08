@@ -482,6 +482,7 @@ products p { color: black; font-size: 20px; }
     border: 2px solid grey;
     position: relative;
     transition: 0.2s;
+    background-color: white;
 }
 
 .add_to_favourites_button:hover{
@@ -489,6 +490,7 @@ products p { color: black; font-size: 20px; }
 }
 
 .add_to_cart_button{
+    border: none;
     position: relative;
     top: 20px;
     border-radius: 15px;

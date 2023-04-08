@@ -52,14 +52,14 @@
         {% endif %}
         <div style="display: flex;">
             <form method="POST">
-                <a class="add_to_favourites_button">
-                    <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 10px; fill: red">
-                </a>
+                <button class="add_to_favourites_button">
+                    <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; bottom: 12px; fill: red">
+                </button>
             </form>
             <form method="POST">
-                <a class="add_to_cart_button">
-                    <p style="font-size: 11pt; text-align: center; position: relative; top: 14px">Добавить в корзину</p>
-                </a>
+                <button class="add_to_cart_button">
+                    <p style="font-size: 11pt; text-align: center; position: relative; top: 10px">Добавить в корзину</p>
+                </button>
             </form>
         </div>
     </div>
