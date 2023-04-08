@@ -5,10 +5,10 @@
         <h2>История покупок</h2>
         <products style="display: block; width: 100%; height: 100%">
             {% if products_purchased %}
-                {% for i in products_purchased %}
+                {% for i, date in products_purchased %}
                     <div class="product_box_in_purchase_history">
                         <div class="product_box_label_in_purchase_history">
-                            <p style="position: relative; left: 20px; top: 3px;">Дата покупки</p>
+                            <p style="position: relative; left: 20px; top: 3px;">{{ date }}</p>
 
                         </div>
                         <a href="{% url 'product_page' i.id %}" style="width: 100%; height: 80%; display: flex;">
