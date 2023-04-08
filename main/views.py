@@ -239,18 +239,18 @@ def profile_edit_data(request):
 def profile_purchase_history(request):
     user = sign_in_user(email_user_in_account)
     purchased_user = Purchased.objects.filter(id_user=user.id)
-    id_products_purchased = []
+    id_date_products_purchased = []
     for i in purchased_user:
-        id_products_purchased.append(i.id_product)
+        id_date_products_purchased.append([i.id_product, i.date])
+    print(id_date_products_purchased)
     products_purchased = []
-    products = Products.objects.all()
-    for i in products:
-        if i.id in id_products_purchased:
-            products_purchased += [i] * id_products_purchased.count(i.id)
+    for id_product, date in id_date_products_purchased:
+        product = Products.objects.get(id=id_product)
+        products_purchased.append([product, date])
     return render(request, 'main/profile/profile_purchase_history.html', {"user_header": str(user),
                                                                       "user": user,
                                                                       "user_in_account": user_in_account,
-                                                                      "products_purchased": products_purchased})
+                                                                      "products_purchased": products_purchased[::-1]})
 
 
 def profile_sell_history(request):

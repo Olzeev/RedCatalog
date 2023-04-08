@@ -1,5 +1,5 @@
 from django.db import models
-
+from datetime import datetime
 
 class Products(models.Model):
     product_name = models.CharField("Название товара", max_length=100)
@@ -64,6 +64,7 @@ class Favourites(models.Model):
 class Purchased(models.Model):
     id_user = models.IntegerField("ID пользователя")
     id_product = models.IntegerField("ID товара")
+    date = models.DateTimeField("Дата и время покупки", default=datetime.now, blank=True)
 
     def __str__(self):
         return f"{self.id_user} -> {self.id_product}"
