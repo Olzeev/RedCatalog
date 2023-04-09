@@ -86,7 +86,7 @@
                         </a>
                     {% endif %}
                     {% if product.count > 0 %}
-                        <a href="{% url 'add_to_favourites' product.id %}" class="add_to_cart_button">
+                        <a href="{% url 'add_to_cart' product.id %}" class="add_to_cart_button">
                             <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
                         </a>
                     {% endif %}
