@@ -7,16 +7,15 @@
 {% block content %}
 <h1 style="margin-top: 50px">Товары со скидкой</h1>
 {% csrf_token %}
-<products>
-    {% for i in products %}
-        {% if i.discount and i.count > 0 %}
-            <a href="{% url 'product_page' i.id %}">
-                <div class="product_box">
-
+<div class="other_products_box">
+    <products>
+        {% for i in products %}
+            {% if i.discount and i.count > 0 %}
+                <a href="{% url 'product_page' i.id %}" class="product_box">
                     <p>{{ i.product_name }}</p>
 
                     <div class="image_box_prod">
-                        <img src={{ i.img_link }} class="product_image">
+                        <img src={{ i.img_link }}>
                     </div>
 
                     {% if i.discount %}
@@ -25,9 +24,10 @@
                     {% else %}
                         <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
                     {% endif %}
-                </div>
-            </a>
-        {% endif %}
-    {% endfor %}
-</products>
+
+                </a>
+            {% endif %}
+        {% endfor %}
+    </products>
+</div>
 {% endblock %}

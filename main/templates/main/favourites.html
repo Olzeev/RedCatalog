@@ -6,10 +6,10 @@
 
 {% block content %}
 <h1 style="margin-top: 50px;">Избранное</h1>
-<products>
-    {% for i in favourites_products %}
-        <a href="{% url 'product_page' i.id %}">
-            <div class="product_box">
+<div class="other_products_box">
+    <products>
+        {% for i in favourites_products %}
+            <a href="{% url 'product_page' i.id %}" class="product_box">
 
                 <p>{{ i.product_name }}</p>
 
@@ -24,8 +24,9 @@
                     <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
                 {% endif %}
 
-            </div>
-        </a>
-    {% endfor %}
-</products>
+
+            </a>
+        {% endfor %}
+    </products>
+</div>
 {% endblock %}
