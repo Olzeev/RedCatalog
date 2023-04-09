@@ -1,12 +1,13 @@
 from django.db import models
 from datetime import datetime
 
+
 class Products(models.Model):
     product_name = models.CharField("Название товара", max_length=100)
     description = models.TextField("Описание товара")
     brand = models.CharField("Название бренда производителя", max_length=50)
     category = models.CharField("Категория", max_length=40)
-    img_link = models.TextField("Ссылка на изображение", default='')
+    img_file = models.FileField("Файл")
     price = models.IntegerField("Цена")
     discount = models.BooleanField("Есть ли скидка на товар", default=False)
     price_with_discount = models.IntegerField("Цена со скидкой")
@@ -27,7 +28,7 @@ class Users(models.Model):
     password = models.CharField("Пароль", max_length=35)
     user_name = models.CharField("Имя", max_length=25, default='', blank=True)
     user_surname = models.CharField("Фамилия", max_length=25, default='', blank=True)
-    img_link = models.URLField("Ссылка на изображение для аватарки", default='', blank=True)
+    img_file = models.FileField("Файл аватарки")
     age = models. CharField("Возраст", max_length=25, default='', blank=True)
     city = models.CharField("Город", max_length=40, default='', blank=True)
     money = models.IntegerField("Баланс", default=100000)

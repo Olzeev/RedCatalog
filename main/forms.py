@@ -28,7 +28,7 @@ class UsersForm(ModelForm):
 class UsersRefactorForm(ModelForm):
     class Meta:
         model = Users
-        fields = ["user_name", "user_surname", "age", "city", "img_link"]
+        fields = ["user_name", "user_surname", "age", "city", "img_file"]
 
         widgets = {
             "user_name": TextInput(attrs={
@@ -55,9 +55,9 @@ class UsersRefactorForm(ModelForm):
                 "maxlength": "30",
                 "size": "30"
             }),
-            "amg_link": TextInput(attrs={
+            "img_file": TextInput(attrs={
                 "class": "password_input",
-                "placeholder": "Ссылка на аватарку",
+                "placeholder": "Загрузить аватарку",
                 "maxlength": "30",
                 "size": "30"
             })

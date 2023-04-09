@@ -43,8 +43,8 @@
     {% if user_in_account %}
         <a href="{% url 'profile' %}" class="header_user" >
             <div>
-                {% if user.img_link %}
-                    <img src="{{ user.img_link }}">
+                {% if user.img_file %}
+                    <img src="{{ user.img_file }}">
                 {% else %}
                     <img src="{% static 'main/png/default_avatar.png' %}">
                 {% endif %}

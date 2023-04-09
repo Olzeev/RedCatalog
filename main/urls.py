@@ -20,4 +20,5 @@ urlpatterns = [
     path('profile/my_products', views.profile_my_products, name='profile_my_products'),
     path('profile', views.profile, name='profile'),
     path("add_to_favourites/<int:key>", views.add_to_favourites, name='add_to_favourites'),
+    path("add_to_cart/<int:key>", views.add_to_cart, name='add_to_cart'),
 ]

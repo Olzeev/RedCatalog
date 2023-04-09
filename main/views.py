@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Products, Users, Purchased, Favourites
+from .models import Products, Users, Purchased, Favourites, Cart
 from django.views.generic.detail import DetailView
 from .forms import UsersForm, UsersRefactorForm
 from django.conf import settings
@@ -295,3 +295,13 @@ def cart(request):
     user = sign_in_user(email_user_in_account)
     data = {"user_header": str(user), "user": user, "user_in_account": user_in_account}
     return render(request, 'main/cart.html', data)
+
+
+def add_to_cart(request, key):
+    user = sign_in_user(email_user_in_account)
+    product_add_to_cart = Cart()
+    product_add_to_cart.id_product = key
+    product_add_to_cart.id_user = user.id
+    product_add_to_cart.count = 1
+    product_add_to_cart.save()
+    return redirect("product_page", key)
