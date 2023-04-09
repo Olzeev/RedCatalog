@@ -21,4 +21,5 @@ urlpatterns = [
     path('profile', views.profile, name='profile'),
     path("add_to_favourites/<int:key>", views.add_to_favourites, name='add_to_favourites'),
     path("add_to_cart/<int:key>", views.add_to_cart, name='add_to_cart'),
+    path("add_product", views.add_product, name='add_product')
 ]

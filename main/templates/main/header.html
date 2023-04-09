@@ -61,6 +61,11 @@
             <p>Вход</p>
         </a>
     {% endif %}
+    {% if user_in_account %}
+        <div class="balance_in_header">
+            <p style="position: relative; top: 7px">{{ user.money }} ₽</p>
+        </div>
+    {% endif %}
 </div>
 <div class="content">
     {% block content %}

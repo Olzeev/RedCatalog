@@ -1,5 +1,11 @@
 {% extends 'main/profile_page.html' %}
 
 {% block profile_content %}
-    <div><p>Мои товары</p></div>
+    <div>
+        <h4>Мои товары</h4>
+        <a class="add_product_button" href="{% url 'add_product' %}">
+            <p1 style="font-size: 30pt; position: relative; left: 10px; bottom: 15px; color: rgb(255, 100, 100)">+</p1>
+            <p style="position: relative; left: 20px; top: 7px">Добавить товар</p>
+        </a>
+    </div>
 {% endblock %}
