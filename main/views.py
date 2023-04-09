@@ -290,3 +290,9 @@ def add_to_favourites(request, key):
     product_add_to_favourite.id_user = user.id
     product_add_to_favourite.save()
     return redirect("product_page", key)
+
+
+def cart(request):
+    user = sign_in_user(email_user_in_account)
+    data = {"user_header": str(user), "user": user, "user_in_account": user_in_account}
+    return render(request, 'main/cart.html', data)
