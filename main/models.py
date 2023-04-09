@@ -86,9 +86,10 @@ class Sold(models.Model):
         verbose_name_plural = "Проданное"
 
 
-class Card(models.Model):
+class Cart(models.Model):
     id_user = models.IntegerField("ID пользователя")
     id_product = models.IntegerField("ID товара")
+    count = models.IntegerField("Количество товара")
 
     def __str__(self):
         return f"{self.id_user} -> {self.id_product}"
