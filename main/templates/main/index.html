@@ -14,12 +14,8 @@ Red Catalog - Главная
     <products>
         {% for i in top_products %}
             {% if i.count > 0 %}
-<<<<<<< HEAD
                 <a href="{% url 'product_page' i.id %}" class="product_box">
                     <p>{{ i.product_name }}</p>
-=======
-                <a href="{% url 'product_page' i.id %}">
-                    <div class="product_box">
 
                         <p>{{ i.product_name }}</p>
 
@@ -34,9 +30,6 @@ Red Catalog - Главная
                         {% else %}
                             <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
                         {% endif %}
-
-
->>>>>>> 0f6225acc5b086f300c959cb506904dfd396fd6a
 
                     <div class="image_box_prod">
                         <img src={{ i.img_link }}>
@@ -59,12 +52,8 @@ Red Catalog - Главная
     <products>
         {% for i in products %}
             {% if i.count > 0 %}
-<<<<<<< HEAD
+
                 <a href="{% url 'product_page' i.id %}" class="product_box">
-                    <p>{{ i.product_name }}</p>
-=======
-                <a href="{% url 'product_page' i.id %}">
-                    <div class="product_box">
 
                         <p>{{ i.product_name }}</p>
 
@@ -78,7 +67,6 @@ Red Catalog - Главная
                         {% else %}
                             <p class="price_without_discount_on_main">{{ i.price_with_discount }} ₽</p>
                         {% endif %}
->>>>>>> 0f6225acc5b086f300c959cb506904dfd396fd6a
 
                     <div class="image_box_prod">
                         <img src={{ i.img_link }}>
