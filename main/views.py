@@ -116,9 +116,17 @@ def stock(request):
 
 def favourites(request):
     user = sign_in_user(email_user_in_account)
+    if user:
+        id_favourites_products = list(map(lambda x: x.id_product, Favourites.objects.filter(id_user=user.id)))
+        favourites_products = []
+        for i in id_favourites_products:
+            favourites_products.append(Products.objects.get(id=i))
+    else:
+        return redirect("login")
     return render(request, 'main/favourites.html', {"user_header": str(user),
                                                     "user": user,
-                                                    "user_in_account": user_in_account})
+                                                    "user_in_account": user_in_account,
+                                                    "favourites_products": favourites_products})
 
 
 def login(request):
