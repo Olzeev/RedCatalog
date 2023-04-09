@@ -18,88 +18,96 @@
         <p>Продавец: {{ product.seller }}</p><br>
         <b>Осталось: {{ product.count }}</b>
     </div>
-    <div class="product_price">
-        {% if product.discount %}
-            <p class="product_price_with_discount_in_product_page">{{ product.price_with_discount }} ₽</p>
-            <div style="display: flex; flex-direction: row;">
-                <p class="product_price_without_discount_in_product_page">{{ product.price }} ₽</p>
-                <div style="border-radius: 10px; margin-left:50px; margin-top: -15px; font-size: 12pt; color: white; width: 55px; height: 25px; background-color: red">
-                    <p style="margin-left:5px;">-{{ product.percent_discount }}%</p>
+    <div>
+        <div class="product_price">
+            {% if product.discount %}
+                <p class="product_price_with_discount_in_product_page">{{ product.price_with_discount }} ₽</p>
+                <div style="display: flex; flex-direction: row;">
+                    <p class="product_price_without_discount_in_product_page">{{ product.price }} ₽</p>
+                    <div style="border-radius: 10px; margin-left:50px; margin-top: -15px; font-size: 12pt; color: white; width: 55px; height: 25px; background-color: red">
+                        <p style="margin-left:5px;">-{{ product.percent_discount }}%</p>
+                    </div>
                 </div>
-            </div>
-            {% if user_in_account %}
-                {% if product.count > 0 %}
-                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
-                        <p>Купить</p>
-                    </a>
+                {% if user_in_account %}
+                    {% if product.count > 0 %}
+                        <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                            <p>Купить</p>
+                        </a>
+                    {% else %}
+                        <div class="buy_button_not_available">
+                            <p>Нет в наличии</p>
+                        </div>
+                    {% endif %}
                 {% else %}
-                    <div class="buy_button_not_available">
-                        <p>Нет в наличии</p>
-                    </div>
+                    {% if product.count > 0 %}
+                        <a href="{% url 'login' %}" class="buy_button">
+                            <p>Купить</p>
+                        </a>
+                    {% else %}
+                        <div class="buy_button_not_available">
+                            <p>Нет в наличии</p>
+                        </div>
+                    {% endif %}
                 {% endif %}
             {% else %}
-                {% if product.count > 0 %}
-                    <a href="{% url 'login' %}" class="buy_button">
-                        <p>Купить</p>
-                    </a>
+                <p class="product_price_with_discount_in_product_page">{{ product.price }} ₽</p>
+                {% if user_in_account %}
+                    {% if product.count > 0 %}
+                        <a href="{% url 'buy_product' product.id %}" class="buy_button">
+                            <p>Купить</p>
+                        </a>
+                    {% else %}
+                        <div class="buy_button_not_available">
+                            <p>Нет в наличии</p>
+                        </div>
+                    {% endif %}
                 {% else %}
-                    <div class="buy_button_not_available">
-                        <p>Нет в наличии</p>
-                    </div>
-                {% endif %}
-            {% endif %}
-        {% else %}
-            <p class="product_price_with_discount_in_product_page">{{ product.price }} ₽</p>
-            {% if user_in_account %}
-                {% if product.count > 0 %}
-                    <a href="{% url 'buy_product' product.id %}" class="buy_button">
-                        <p>Купить</p>
-                    </a>
-                {% else %}
-                    <div class="buy_button_not_available">
-                        <p>Нет в наличии</p>
-                    </div>
-                {% endif %}
-            {% else %}
-                {% if product.count > 0 %}
-                    <a href="{% url 'login' %}" class="buy_button">
-                        <p>Купить</p>
-                    </a>
-                {% else %}
-                    <div class="buy_button_not_available">
-                        <p>Нет в наличии</p>
-                    </div>
-                {% endif %}
+                    {% if product.count > 0 %}
+                        <a href="{% url 'login' %}" class="buy_button">
+                            <p>Купить</p>
+                        </a>
+                    {% else %}
+                        <div class="buy_button_not_available">
+                            <p>Нет в наличии</p>
+                        </div>
+                    {% endif %}
 
+                {% endif %}
             {% endif %}
-        {% endif %}
-        <div style="display: flex;">
-            {% if user_in_account %}
-                {% if in_favourite %}
-                    <a href="{% url 'add_to_favourites' product.id %}" class="add_to_favourites_button">
-                        <img src="{% static 'main/png/heart_icon1.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
-                    </a>
+            <div style="display: flex;">
+                {% if user_in_account %}
+                    {% if in_favourite %}
+                        <a href="{% url 'add_to_favourites' product.id %}" class="add_to_favourites_button">
+                            <img src="{% static 'main/png/heart_icon1.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
+                        </a>
+                    {% else %}
+                        <a href="{% url 'add_to_favourites' product.id %}" class="add_to_favourites_button">
+                            <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
+                        </a>
+                    {% endif %}
+                    {% if product.count > 0 %}
+                        <a href="{% url 'add_to_favourites' product.id %}" class="add_to_cart_button">
+                            <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
+                        </a>
+                    {% endif %}
                 {% else %}
-                    <a href="{% url 'add_to_favourites' product.id %}" class="add_to_favourites_button">
+                    <a href="{% url 'login' %}" class="add_to_favourites_button">
                         <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
                     </a>
+                    {% if product.count > 0 %}
+                        <a href="{% url 'login' %}" class="add_to_cart_button">
+                            <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
+                        </a>
+                    {% endif %}
                 {% endif %}
-                {% if product.count > 0 %}
-                    <a href="{% url 'add_to_favourites' product.id %}" class="add_to_cart_button">
-                        <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
-                    </a>
-                {% endif %}
-            {% else %}
-                <a href="{% url 'login' %}" class="add_to_favourites_button">
-                    <img src="{% static 'main/png/heart_icon.svg' %}" style="width: 30px; position: relative; left: 8px; bottom: 12px; fill: red">
-                </a>
-                {% if product.count > 0 %}
-                    <a href="{% url 'login' %}" class="add_to_cart_button">
-                        <p style="font-size: 11pt; text-align: center; position: relative; top: 13px">Добавить в корзину</p>
-                    </a>
-                {% endif %}
-            {% endif %}
+            </div>
+
         </div>
+        {% if error %}
+            <div class="no_money_alert">
+                <p style="position: relative; text-align: center; top: 10px; font-size: 20px; color: white">{{ error }}</p>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

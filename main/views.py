@@ -52,17 +52,23 @@ def index(request):
                                                "user_in_account": user_in_account})
 
 
+error_purchase = ''
+
+
 def product_page(request, pk):
+    global error_purchase
     product = Products.objects.get(id=pk)
     user = sign_in_user(email_user_in_account)
     in_favourite = False
     if user and Favourites.objects.filter(id_user=user.id, id_product=pk):
         in_favourite = True
-    data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account, 'in_favourite': in_favourite}
+    data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account, 'in_favourite': in_favourite, "error": error_purchase}
+    error_purchase = ''
     return render(request, 'main/product_page.html', data)
 
 
 def buy_product(request, key):
+    global error_purchase
     product = Products.objects.get(id=key)
     user = sign_in_user(email_user_in_account)
     price = product.price
@@ -81,8 +87,10 @@ def buy_product(request, key):
         product.save()
 
         data = {'product': product, "user_header": str(user), "user": user, "user_in_account": user_in_account}
+        error_purchase = ""
         return render(request, 'main/purchase_success.html', data)
-    return render(request, 'main/index.html')
+    error_purchase="На вашем счету недостаточное средств"
+    return redirect("product_page", key)
 
 
 def category_page(request, key):
