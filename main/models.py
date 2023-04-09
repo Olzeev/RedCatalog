@@ -28,7 +28,7 @@ class Users(models.Model):
     user_name = models.CharField("Имя", max_length=25, default='', blank=True)
     user_surname = models.CharField("Фамилия", max_length=25, default='', blank=True)
     img_link = models.URLField("Ссылка на изображение для аватарки", default='', blank=True)
-    age = models.IntegerField("Возраст", default=-1, blank=True)
+    age = models. CharField("Возраст", max_length=25, default='', blank=True)
     city = models.CharField("Город", max_length=40, default='', blank=True)
     money = models.IntegerField("Баланс", default=100000)
     products_purchased = models.IntegerField('Количество купленных товаров', default=0)
