@@ -254,7 +254,6 @@ def profile_purchase_history(request):
     id_date_products_purchased = []
     for i in purchased_user:
         id_date_products_purchased.append([i.id_product, i.date])
-    print(id_date_products_purchased)
     products_purchased = []
     for id_product, date in id_date_products_purchased:
         product = Products.objects.get(id=id_product)
