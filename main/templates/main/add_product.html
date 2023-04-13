@@ -7,28 +7,33 @@ Red Catalog - Главная
 
 {% block content %}
 
-{% csrf_token %}
 
-<div class="add_product_box">
-    <div>
-        <h3>Изображение товара</h3>
-        <label for="images" class="drop-container">
-        <span class="drop-title">Перетащите сюда изображение</span>
-        или
-        <input type="file" id="images" accept="image/*" required>
-        </label>
-    </div>
-    <div>
-        <form method="post">
+<form method="post">
+    {% csrf_token %}
+    <div class="add_product_box">
+
+        <div>
+            {% csrf_token %}
+            <h1>Добавьте товар на продажу</h1><br>
+            <h3>Изображение товара</h3>
+            {{ form.img_file }}<br><br>
             {{ form.product_name }}<br><br>
+            {{ form.description }}<br><br>
+            {{ form.brand }}<br><br>
             {{ form.category }}<br><br>
-            {{ form.age }}<br><br>
-            {{ form.city }}<br>
-            <div style="margin-top: 20px;">
-                <button type="submit" class="edit_data_button">Сохранить</button>
-            </div>
-        </form>
+            {{ form.price }}<br><br>
+        </div>
+        <div style="margin-top: 12.8%;">
+            {% csrf_token %}
+            {{ form.discount }}<h4>Есть скидка или нет?</h4><br>
+            {{ form.price_with_discount }}<br><br>
+            {{ form.count }}<br><br>
+
+        </div>
     </div>
-</div>
+    <div style="margin-top: 100px;">
+        <button type="submit" class="edit_data_button">Сохранить</button>
+    </div>
+</form>
 
 {% endblock %}

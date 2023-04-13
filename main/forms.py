@@ -32,31 +32,31 @@ class UsersRefactorForm(ModelForm):
 
         widgets = {
             "user_name": TextInput(attrs={
-                "class": "login_input",
+                "class": "text_input",
                 "placeholder": "Имя",
                 "maxlength": "30",
                 "size": "30"
             }),
             "user_surname": TextInput(attrs={
-                "class": "password_input",
+                "class": "text_input",
                 "placeholder": "Фамилия",
                 "maxlength": "30",
                 "size": "30"
             }),
             "age": TextInput(attrs={
-                "class": "password_input",
+                "class": "text_input",
                 "placeholder": "Возраст",
                 "maxlength": "30",
                 "size": "30"
             }),
             "city": TextInput(attrs={
-                "class": "password_input",
+                "class": "text_input",
                 "placeholder": "Город",
                 "maxlength": "30",
                 "size": "30"
             }),
             "img_file": TextInput(attrs={
-                "class": "password_input",
+                "class": "text_input",
                 "placeholder": "Загрузить аватарку",
                 "maxlength": "30",
                 "size": "30"
@@ -67,7 +67,7 @@ class UsersRefactorForm(ModelForm):
 class AddProductForm(ModelForm):
     class Meta:
         model = Products
-        fields = ["product_name", "category", "brand", "description", "price", "count"]
+        fields = ["product_name", "description", "brand", "category", "img_file", "price", "discount", "price_with_discount", "count", "seller"]
 
         widgets = {
             "product_name": TextInput(attrs={
@@ -78,32 +78,38 @@ class AddProductForm(ModelForm):
             }),
             "category": TextInput(attrs={
                 "class": "text_input",
-                "placeholder": "Фамилия",
+                "placeholder": "Категория",
                 "maxlength": "30",
                 "size": "30"
             }),
             "brand": TextInput(attrs={
                 "class": "text_input",
-                "placeholder": "Возраст",
+                "placeholder": "Бренд",
                 "maxlength": "30",
                 "size": "30"
             }),
             "description": TextInput(attrs={
                 "class": "text_input",
-                "placeholder": "Город",
+                "placeholder": "Описание",
                 "maxlength": "30",
                 "size": "30"
             }),
             "price": TextInput(attrs={
                 "class": "text_input",
-                "placeholder": "Загрузить аватарку",
+                "placeholder": "Цена на товар",
                 "maxlength": "30",
                 "size": "30"
             }),
             "count": TextInput(attrs={
                 "class": "text_input",
-                "placeholder": "Загрузить аватарку",
+                "placeholder": "Количество товара",
                 "maxlength": "30",
                 "size": "30"
-            })
+            }),
+                    "price_with_discount": TextInput(attrs={
+                        "class": "text_input",
+                        "placeholder": "Цена с учётом скидки",
+                        "maxlength": "30",
+                        "size": "30"
+                    })
         }

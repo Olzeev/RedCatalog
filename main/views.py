@@ -229,7 +229,7 @@ def profile_edit_data(request):
     user_refactor = Users.objects.get(id=user.id)
     if request.method == "POST":
         form = UsersRefactorForm(request.POST)
-        if form.is_valid():
+        if form:
             if form['user_name'].value() != '':
                 user_refactor.user_name = form['user_name'].value()
             if form['user_surname'].value() != '':
@@ -309,5 +309,37 @@ def add_to_cart(request, key):
 
 def add_product(request):
     user = sign_in_user(email_user_in_account)
-    data = {"user_header": str(user), "user": user, "user_in_account": user_in_account}
+    form = AddProductForm()
+    data = {"user_header": str(user), "user": user, "user_in_account": user_in_account, "form": form}
+    if request.method == "POST":
+        add_product_object = AddProductForm(request.POST)
+        if form:
+            if form['product_name'].value() != '':
+                add_product_object.product_name = form['product_name'].value()
+            if form['description'].value() != '':
+                add_product_object.description = form['description'].value()
+            if form['brand'].value() != '':
+                add_product_object.brand = form['brand'].value()
+            if form['category'].value() != '':
+                add_product_object.category = form['category'].value()
+            if form['img_file'].value() != '':
+                add_product_object.img_file = form['img_file'].value()
+            if form['price'].value() != '':
+                add_product_object.price = int(request.POST.get('price'))
+            if form['discount'].value() != '':
+                add_product_object.discount = form['discount'].value()
+            if form['price_with_discount'].value() != '':
+                add_product_object.price_with_discount = int(request.POST.get('price_with_discount'))
+            if form['count'].value() != '':
+                add_product_object.count = int(request.POST.get('count'))
+            add_product_object.percent_discount = int((add_product_object.price - add_product_object.price_with_discount) / add_product_object.price * 100)
+            add_product_object.seller = str(user)
+
+            add_product_object.save()
+            return redirect("shop")
     return render(request, 'main/add_product.html', data)
+
+
+def user_directory_path(filename):
+    user = sign_in_user(email_user_in_account)
+    return f'user_{user.id}/{filename}'

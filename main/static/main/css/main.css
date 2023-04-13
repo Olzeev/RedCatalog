@@ -250,6 +250,7 @@ products p { color: black; font-size: 20px; }
 }
 
 .login_input{
+    padding-left: 10px;
     height: 50px;
     border: solid rgb(200, 200, 200);
     border-radius: 10px;
@@ -257,11 +258,14 @@ products p { color: black; font-size: 20px; }
     margin-top: 20px;
 }
 .password_input{
+    padding-left: 10px;
     height: 50px;
     border: solid rgb(200, 200, 200);
     border-radius: 10px;
     font-size: 15pt;
 }
+
+
 
 .login_button{
     position: absolute;
@@ -621,10 +625,11 @@ products p { color: black; font-size: 20px; }
 */
 
 .text_input{
-    width: 200px;
+    padding-left: 15px;
     height: 50px;
-    display: block;
-    margin-top: 10px;
+    border: solid rgb(200, 200, 200);
+    border-radius: 5px;
+    font-size: 15pt;
 }
 
 

@@ -132,3 +132,6 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 
+MEDIA_ROOT = BASE_DIR / 'main/static/main/png/users'
+
+

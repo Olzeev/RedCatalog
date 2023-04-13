@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from .views import user_directory_path
 
 
 class Products(models.Model):
@@ -12,7 +13,7 @@ class Products(models.Model):
     discount = models.BooleanField("Есть ли скидка на товар", default=False)
     price_with_discount = models.IntegerField("Цена со скидкой")
     percent_discount = models.IntegerField("Процент скидки", default=0)
-    count = models.IntegerField("Количество товара (в шк)", default=1)
+    count = models.IntegerField("Количество товара (в шт)")
     seller = models.CharField("Продавец", default="Red Catalog", max_length=40)
 
     def __str__(self):
@@ -28,7 +29,7 @@ class Users(models.Model):
     password = models.CharField("Пароль", max_length=35)
     user_name = models.CharField("Имя", max_length=25, default='', blank=True)
     user_surname = models.CharField("Фамилия", max_length=25, default='', blank=True)
-    img_file = models.FileField("Файл аватарки")
+    img_file = models.FileField("Файл аватарки", upload_to=user_directory_path)
     age = models. CharField("Возраст", max_length=25, default='', blank=True)
     city = models.CharField("Город", max_length=40, default='', blank=True)
     money = models.IntegerField("Баланс", default=100000)
