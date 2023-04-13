@@ -1,0 +1,34 @@
+{% extends 'main/header.html' %}
+{% load static %}
+
+{% block title %}
+Red Catalog - Главная
+{% endblock %}
+
+{% block content %}
+
+{% csrf_token %}
+
+<div class="add_product_box">
+    <div>
+        <h3>Изображение товара</h3>
+        <label for="images" class="drop-container">
+        <span class="drop-title">Перетащите сюда изображение</span>
+        или
+        <input type="file" id="images" accept="image/*" required>
+        </label>
+    </div>
+    <div>
+        <form method="post">
+            {{ form.product_name }}<br><br>
+            {{ form.category }}<br><br>
+            {{ form.age }}<br><br>
+            {{ form.city }}<br>
+            <div style="margin-top: 20px;">
+                <button type="submit" class="edit_data_button">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

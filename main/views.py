@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Products, Users, Purchased, Favourites, Cart
 from django.views.generic.detail import DetailView
-from .forms import UsersForm, UsersRefactorForm
+from .forms import UsersForm, UsersRefactorForm, AddProductForm
 from django.conf import settings
 from django.core.mail import send_mail
 import random
@@ -305,3 +305,9 @@ def add_to_cart(request, key):
     product_add_to_cart.count = 1
     product_add_to_cart.save()
     return redirect("product_page", key)
+
+
+def add_product(request):
+    user = sign_in_user(email_user_in_account)
+    data = {"user_header": str(user), "user": user, "user_in_account": user_in_account}
+    return render(request, 'main/add_product.html', data)

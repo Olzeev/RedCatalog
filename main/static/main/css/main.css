@@ -317,7 +317,7 @@ products p { color: black; font-size: 20px; }
     color: black;
     transition: 0.2s;
     position: absolute;
-    right: 30px;
+    right: 130px;
     top: 10px;
 }
 
@@ -553,7 +553,78 @@ products p { color: black; font-size: 20px; }
     animation-fill-mode: forwards;
 }
 
+.add_product_button{
+    display: flex;
+    position: relative;
+    top: 30px;
+    width: 180px;
+    height: 40px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 2px 2px 5px grey;
+    border-radius: 15px;
+    transition: 0.2s;
+}
+.add_product_button p{
+    transition: 0.2s;
+}
 
+.add_product_button:hover{
+    color: black;
+    width: 174px;
+    height: 38px;
+    margin-left: 3px;
+    top: 31px;
+}
+.add_product_button:hover p{
+    margin-left: -5px;
+}
+.add_product_button:active{
+    width: 170px;
+    height: 36px;
+    margin-left: 4px;
+    top: 32px;
+}
 
+.add_product_box{
+    position: relative;
+    top: 50px;
+    display: flex;
+}
+
+/*
+.drop-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 400px;
+    border-radius: 10px;
+    border: 2px dashed black;
+    color: grey;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.drop-container:hover {
+  background: rgb(230, 230, 230);
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+*/
+
+.text_input{
+    width: 200px;
+    height: 50px;
+    display: block;
+    margin-top: 10px;
+}
 
 

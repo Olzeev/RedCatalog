@@ -1,4 +1,4 @@
-from .models import Users, Purchased
+from .models import Users, Purchased, Products
 from django.forms import ModelForm, TextInput
 
 
@@ -63,3 +63,47 @@ class UsersRefactorForm(ModelForm):
             })
         }
 
+
+class AddProductForm(ModelForm):
+    class Meta:
+        model = Products
+        fields = ["product_name", "category", "brand", "description", "price", "count"]
+
+        widgets = {
+            "product_name": TextInput(attrs={
+                "class": "text_input",
+                "placeholder": "Название товара",
+                "maxlength": "30",
+                "size": "30"
+            }),
+            "category": TextInput(attrs={
+                "class": "text_input",
+                "placeholder": "Фамилия",
+                "maxlength": "30",
+                "size": "30"
+            }),
+            "brand": TextInput(attrs={
+                "class": "text_input",
+                "placeholder": "Возраст",
+                "maxlength": "30",
+                "size": "30"
+            }),
+            "description": TextInput(attrs={
+                "class": "text_input",
+                "placeholder": "Город",
+                "maxlength": "30",
+                "size": "30"
+            }),
+            "price": TextInput(attrs={
+                "class": "text_input",
+                "placeholder": "Загрузить аватарку",
+                "maxlength": "30",
+                "size": "30"
+            }),
+            "count": TextInput(attrs={
+                "class": "text_input",
+                "placeholder": "Загрузить аватарку",
+                "maxlength": "30",
+                "size": "30"
+            })
+        }
